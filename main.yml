@@ -5,4 +5,4 @@
   tasks:
     - name: Test ansible-pull
       debug:
-        msg: Called from ansible-pull
+        msg: Running ansible-pull on {{ ansible_distribution_release }}
