@@ -1,0 +1,2 @@
+nodejs_version: node_10.x
+nodejs_release: "{{ ansible_distribution_release }}"

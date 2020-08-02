@@ -2,7 +2,10 @@
 # Main playbook targetting localhost only.
 
 - hosts: localhost
-  tasks:
-    - name: Test ansible-pull
-      debug:
-        msg: Running ansible-pull on {{ ansible_distribution_release }}
+
+  roles:
+    - adoptopenjdk
+    - sbt
+    - gradle
+    - golang
+    - nodejs

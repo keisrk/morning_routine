@@ -1,0 +1,9 @@
+---
+# Install Go binary. Go's executable is available from golang.org.
+
+- name: Download golang binary distribution and extract excutable
+  unarchive:
+    src: https://golang.org/dl/go{{ golang_version }}.linux-{{ golang_arch }}.tar.gz
+    dest: /usr/local
+    remote_src: yes
+    extra_opts: [--gzip]
