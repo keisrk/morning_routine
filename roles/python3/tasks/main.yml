@@ -1,0 +1,19 @@
+---
+# Python 3 environment
+
+- name: Create Python 3 venv dir
+  file: 
+    path: "{{ user_home }}/python_projects"
+    state: directory
+
+- name: Install virtualenv via pip3
+  pip:
+    name: virtualenv
+    executable: pip3
+
+- name: install pycparser
+  pip:
+    name: pycparser
+    virtualenv: "{{ user_home }}/python_projects"
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ user_home }}/.local/bin"
