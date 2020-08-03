@@ -1,0 +1,43 @@
+---
+# Defines a user.
+#
+# TODO: Place *.rc files under /etc/skel.
+# TODO: Lookup environment vairables and set user_* accordingly.
+
+# Later you need to set password, i.e., $ sudo passwd {{ user_name }}
+- name: Create a user with a disabled password
+  user:
+    name: '{{ user_name }}'
+    comment: '{{ user_gecos }}'
+    password: '!'
+    shell: /bin/bash
+
+- name: Include sudo files
+  lineinfile:
+    dest: /etc/sudoers
+    line: '#includedir /etc/sudoers.d'
+    validate: 'visudo -cf %s'
+
+- name: Add user to sudoers
+  lineinfile:
+    dest: '/etc/sudoers.d/{{ user_name }}'
+    line: '{{ user_name }} ALL=(ALL) ALL'
+    create: yes
+    validate: 'visudo -cf %s'
+
+# Git global configuration for the fresh user.
+- name: Configure git user.name
+  become: yes
+  become_user: '{{ user_name }}'
+  git_config:
+    name: user.name
+    scope: global
+    value: '{{ user_gecos }}'
+
+- name: Configure git user.email
+  become: yes
+  become_user: '{{ user_name }}'
+  git_config:
+    name: user.email
+    scope: global
+    value: '{{ user_email }}'

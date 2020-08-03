@@ -1,0 +1,3 @@
+user_name: "{{ lookup('env', 'USER_NAME') | default('guest', true) }}"
+user_gecos: "{{ lookup('env', 'USER_GECOS') | default('Guest Account', true) }}"
+user_email: "{{ lookup('env', 'USER_EMAIL') | default('guest@morningrouti.ne', true) }}"
