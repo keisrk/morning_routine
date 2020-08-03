@@ -1,5 +1,5 @@
 ---
-# Main playbook targetting localhost only.
+# Main playbook targeting localhost only.
 
 - hosts: localhost
 
