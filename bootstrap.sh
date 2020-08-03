@@ -34,6 +34,11 @@ cat <<EOF > ${BOOT_PLAYBOOK}
 
   tasks:
 
+  - name: Install Python3 pip
+    apt:
+      name: python3-pip
+      state: present
+
   - name: Add an apt key by id from a keyserver
     apt_key:
       keyserver: keyserver.ubuntu.com
