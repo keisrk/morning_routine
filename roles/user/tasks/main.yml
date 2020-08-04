@@ -10,6 +10,14 @@
     comment: '{{ user_gecos }}'
     password: '!'
     shell: /bin/bash
+    generate_ssh_key: yes
+  register: user_result
+
+- name: Provide an authorized key
+  authorized_key:
+    user: "{{ user_name }}"
+    state: present
+    key: "{{ lookup('file', '{{ user_result.home }}/.ssh/id_rsa.pub') }}"
 
 - name: Include sudo files
   lineinfile:
@@ -26,7 +34,6 @@
 
 # Git global configuration for the fresh user.
 - name: Configure git user.name
-  become: yes
   become_user: '{{ user_name }}'
   git_config:
     name: user.name
@@ -34,7 +41,6 @@
     value: '{{ user_gecos }}'
 
 - name: Configure git user.email
-  become: yes
   become_user: '{{ user_name }}'
   git_config:
     name: user.email
