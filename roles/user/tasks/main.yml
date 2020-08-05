@@ -18,7 +18,15 @@
     user: "{{ user_name }}"
     state: present
     key: "{{ lookup('file', '{{ user_result.home }}/.ssh/id_rsa.pub') }}"
-    manage_dir: no
+    manage_dir: False
+  register: authorized_key_result
+
+- name: Set proper permissions to the authorized key
+  file:
+    path: "{{ authorized_key_result.keyfile }}"
+    state: file
+    owner: "{{ authorized_key_result.user }}"
+    mode: 0600
 
 - name: Include sudo files
   lineinfile:
