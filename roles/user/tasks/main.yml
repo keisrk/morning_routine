@@ -18,6 +18,7 @@
     user: "{{ user_name }}"
     state: present
     key: "{{ lookup('file', '{{ user_result.home }}/.ssh/id_rsa.pub') }}"
+    manage_dir: no
 
 - name: Include sudo files
   lineinfile:
@@ -31,18 +32,3 @@
     line: '{{ user_name }} ALL=(ALL) ALL'
     create: yes
     validate: 'visudo -cf %s'
-
-# Git global configuration for the fresh user.
-- name: Configure git user.name
-  become_user: '{{ user_name }}'
-  git_config:
-    name: user.name
-    scope: global
-    value: '{{ user_gecos }}'
-
-- name: Configure git user.email
-  become_user: '{{ user_name }}'
-  git_config:
-    name: user.email
-    scope: global
-    value: '{{ user_email }}'

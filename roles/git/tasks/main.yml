@@ -1,0 +1,13 @@
+---
+# Git global configuration for the fresh user.
+- name: Configure git user.name
+  git_config:
+    name: user.name
+    scope: global
+    value: '{{ user_gecos }}'
+
+- name: Configure git user.email
+  git_config:
+    name: user.email
+    scope: global
+    value: '{{ user_email }}'

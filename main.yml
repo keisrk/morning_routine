@@ -10,3 +10,8 @@
     - gradle
     - golang
     - nodejs
+
+- hosts: user
+
+  roles:
+    - git
