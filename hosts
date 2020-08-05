@@ -8,6 +8,7 @@ all:
     localhost:
       ansible_connection: local
     user:
+      become_user: "{{ user_name }}"
       ansible_user: "{{ user_name }}"
       ansible_host: localhost
       ansible_connection: ssh

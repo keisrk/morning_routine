@@ -1,0 +1,9 @@
+---
+# Provision SSH authentication
+- name: Force ssh access via public key
+  lineinfile:
+    dest=/etc/ssh/sshd_config
+    regexp='PubkeyAuthentication'
+    line="PubkeyAuthentication yes"
+  notify:
+  - restart ssh

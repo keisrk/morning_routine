@@ -11,8 +11,6 @@ set -e
 alias log='logger -s -t bootstrap.sh'
 
 export DEBIAN_FRONTEND=noninteractive
-export ANSIBLE_LOCAL_TEMP=$HOME/.ansible/tmp
-export ANSIBLE_REMOTE_TEMP=$HOME/.ansible/tmp
 
 ANSIBLE_VERSION="2.9"
 BOOT_PLAYBOOK="$(mktemp -t bootstrap_XXXXXXXXXX.yml)"
@@ -59,11 +57,15 @@ log "Created ${BOOT_PLAYBOOK}."
 if ! ansible --version | head -n 1 | grep -q ${ANSIBLE_VERSION}
 then
     log "System's ansible is obsolete. Installing from upstream..."
+
+    ANSIBLE_LOCAL_TEMP=/tmp/.ansible/tmp \
+    ANSIBLE_REMOTE_TEMP=/tmp/.ansible/tmp \
     ansible-playbook ${BOOT_PLAYBOOK}
+
     log "Installed $(ansible --version | head -n 1)"
 else
     log "Matched to the right version of ansible. Proceeding..."
 fi
 
-ansible-pull --url ${MAIN_PLAYBOOK_REPO} --inventory hosts --limit localhost,user ${MAIN_PLAYBOOK}
+ansible-pull -vvv --url ${MAIN_PLAYBOOK_REPO} --inventory hosts --limit localhost,user ${MAIN_PLAYBOOK}
 log "Ansible completed the main playbook."

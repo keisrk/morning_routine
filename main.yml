@@ -4,6 +4,7 @@
 - hosts: localhost
 
   roles:
+    - ssh
     - user
     - adoptopenjdk
     - sbt

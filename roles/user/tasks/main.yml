@@ -21,6 +21,13 @@
     manage_dir: False
   register: authorized_key_result
 
+- name: Set proper permissions to user's SSH config dir
+  file:
+    path: "{{ authorized_key_result.keyfile | dirname }}"
+    state: directory
+    owner: "{{ authorized_key_result.user }}"
+    mode: 0700
+
 - name: Set proper permissions to the authorized key
   file:
     path: "{{ authorized_key_result.keyfile }}"
