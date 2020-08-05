@@ -1,0 +1,32 @@
+---
+#
+# Docker repo
+- name: Add Docker's official GPG key
+  apt_key:
+    url: "https://download.docker.com/linux/{{ docker_distro }}/gpg"
+
+- name: Add Docker repo
+  apt_repository:
+    filename: sbt
+    repo: "deb [arch=amd64]
+      https://download.docker.com/linux/{{ docker_distro }}
+      {{ docker_release }}
+      stable"
+
+- name: Ensure Docker CE is up to date
+  apt:
+    update_cache: yes
+    name: docker-ce
+    state: latest
+
+- name: Ensure Docker CLI is up to date
+  apt:
+    update_cache: yes
+    name: docker-ce-cli
+    state: latest
+
+- name: Ensure Container daemon is up to date
+  apt:
+    update_cache: yes
+    name: containerd.io
+    state: latest

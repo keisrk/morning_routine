@@ -6,6 +6,7 @@
   roles:
     - ssh
     - user
+    - docker
     - adoptopenjdk
     - sbt
     - gradle
