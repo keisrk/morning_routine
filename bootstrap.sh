@@ -65,5 +65,5 @@ else
     log "Matched to the right version of ansible. Proceeding..."
 fi
 
-ansible-pull --url ${MAIN_PLAYBOOK_REPO} --inventory hosts ${MAIN_PLAYBOOK}
+ansible-pull --url ${MAIN_PLAYBOOK_REPO} --inventory hosts --limit localhost,user ${MAIN_PLAYBOOK}
 log "Ansible completed the main playbook."
