@@ -7,6 +7,9 @@
 # an administrator privilege and its usage is simply "$ sudo sh
 # /path/to/bootstrap.sh".
 
+# For development, specify a branch to checkout by setting DEV_BRANCH. By
+# default it checks out master branch.
+
 set -e
 alias log='logger -s -t bootstrap.sh'
 
@@ -16,6 +19,7 @@ ANSIBLE_VERSION="2.9"
 BOOT_PLAYBOOK="$(mktemp -t bootstrap_XXXXXXXXXX.yml)"
 MAIN_PLAYBOOK="main.yml"
 MAIN_PLAYBOOK_REPO="https://github.com/keisrk/morning_routine"
+MAIN_PLAYBOOK_BRANCH=${DEV_BRANCH:-master}
 
 log "Started bootstrap script."
 
@@ -72,5 +76,11 @@ else
     log "Matched to the right version of ansible. Proceeding..."
 fi
 
-ansible-pull -vvv --url ${MAIN_PLAYBOOK_REPO} --inventory hosts --limit localhost,user ${MAIN_PLAYBOOK}
+ansible-pull -v \
+    --url ${MAIN_PLAYBOOK_REPO} \
+    --checkout ${MAIN_PLAYBOOK_BRANCH} \
+    --inventory hosts \
+    --limit localhost,user \
+    ${MAIN_PLAYBOOK}
+
 log "Ansible completed the main playbook."
