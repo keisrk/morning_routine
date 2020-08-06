@@ -12,6 +12,7 @@
     - gradle
     - golang
     - nodejs
+    - dotnet
 
 - hosts: user
 

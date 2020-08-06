@@ -1,0 +1,28 @@
+---
+# Install .NET Core SDK. An official deb package is available.
+
+# .NET repo
+- name: Add an apt key .NET keyserver
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Fetch product list
+  uri:
+    url: "https://packages.microsoft.com/config/\
+      {{ dotnet_distro }}/\
+      {{ dotnet_release }}/\
+      prod.list"
+    return_content: yes
+  register: this
+
+- name: Register .NET official repository
+  apt_repository:
+    filename: dotnet-core
+    repo: "{{ this.content }}"
+
+- name: Ensure .NET Core SDK is up to date
+  apt:
+    update_cache: yes
+    package: dotnet-sdk-3.1
+    state: present
