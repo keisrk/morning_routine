@@ -4,7 +4,6 @@
 - hosts: localhost
 
   roles:
-    - ssh
     - user
     - docker
     - adoptopenjdk
