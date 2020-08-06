@@ -17,5 +17,6 @@
 
   roles:
     - git
+    - gradle_path
     - gopath
     - python3
