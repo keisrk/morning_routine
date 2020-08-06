@@ -1,0 +1,13 @@
+---
+# Install stable Rust.
+
+- name: Fetch rustup script and store it in this.content
+  uri:
+    url: https://sh.rustup.rs
+    return_content: yes
+  register: this
+
+- name: Execute rustup script
+  shell:
+    cmd: sh -s -- -y
+    stdin: "{{ this.content }}"

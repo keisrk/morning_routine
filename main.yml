@@ -17,6 +17,7 @@
 
   roles:
     - git
+    - rustup
     - gradle_path
     - gopath
     - python3
