@@ -1,7 +1,6 @@
 ---
 # Defines a user.
 #
-# TODO: Place *.rc files under /etc/skel.
 
 # Later you need to set password, i.e., $ sudo passwd {{ user_name }}
 - name: Create a user with a disabled password

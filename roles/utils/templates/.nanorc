@@ -1,0 +1,7 @@
+set tabstospaces
+set autoindent
+set fill 80
+set justifytrim
+
+# Use hunspell as a spelling checker
+set speller "hunspell -x -c"

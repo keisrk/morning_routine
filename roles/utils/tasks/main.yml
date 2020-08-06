@@ -1,0 +1,22 @@
+---
+# Enhance CLI life
+
+- name: Install tmux
+  apt:
+    name: tmux
+    state: present
+
+- name: Place tmux config file
+  template:
+    src: .tmux.conf
+    dest: /etc/skel/.tmux.conf
+
+- name: Install spell checker
+  apt:
+    name: hunspell
+    state: present
+
+- name: Place nano config file
+  template:
+    src: .nanorc
+    dest: /etc/skel/.nanorc
