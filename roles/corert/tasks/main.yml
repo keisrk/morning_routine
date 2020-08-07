@@ -1,0 +1,18 @@
+---
+# .NET Core RT
+#
+# <ItemGroup>
+#     <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="1.0.0-alpha-*" />
+# </ItemGroup>
+#
+# $ dotnet publish -p:NativeLib=Static -r linux-x64 -c release
+
+- name: Install llvm
+  apt:
+    name: llvm
+    state: present
+
+- name: Install clang
+  apt:
+    name: clang
+    state: present
