@@ -23,3 +23,4 @@
     - gradle_path
     - gopath
     - python3
+    - npm

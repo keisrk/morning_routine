@@ -1,0 +1,32 @@
+---
+#
+#
+#
+#
+# 
+- name: Create dir for node modules
+  file:
+    path: "{{ ansible_env.HOME }}/.npm"
+    state: directory
+
+- name: Make npm install packages in user's dir
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.npmrc"
+    line: 'prefix = ${HOME}/.npm-packages'
+    create: yes
+
+- name: Add node-package's bin dir to user's path env
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.profile"
+    line: 'export PATH=$PATH:${HOME}/.npm-packages/bin'
+
+# Use yarn to handle dependency
+- name: Install yarn
+  npm:
+    name: yarn
+    global: yes
+
+- name: Install TypeScript
+  npm:
+    name: typescript
+    global: yes
