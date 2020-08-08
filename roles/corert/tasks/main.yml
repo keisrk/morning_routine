@@ -7,12 +7,15 @@
 #
 # $ dotnet publish -p:NativeLib=Static -r linux-x64 -c release
 
-- name: Install llvm
+- name: Install pre-requisites
   apt:
-    name: llvm
-    state: present
-
-- name: Install clang
-  apt:
-    name: clang
+    name:
+      - llvm
+      - clang
+      - libicu-dev
+      - uuid-dev
+      - libcurl4-openssl-dev
+      - zlib1g-dev
+      - libkrb5-dev
+      - libtinfo5
     state: present
