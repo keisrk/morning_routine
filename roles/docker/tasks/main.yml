@@ -13,22 +13,13 @@
       {{ docker_release }}
       stable"
 
-- name: Ensure Docker CE is up to date
+- name: Ensure Docker is up to date
   apt:
     update_cache: yes
-    name: docker-ce
-    state: latest
-
-- name: Ensure Docker CLI is up to date
-  apt:
-    update_cache: yes
-    name: docker-ce-cli
-    state: latest
-
-- name: Ensure Container daemon is up to date
-  apt:
-    update_cache: yes
-    name: containerd.io
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
     state: latest
 
 - name: Fetch docker-compose executable
