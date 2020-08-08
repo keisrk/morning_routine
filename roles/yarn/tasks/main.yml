@@ -1,0 +1,22 @@
+---
+#
+
+- name: Install TypeScript
+  yarn:
+    name: typescript
+    global: yes
+
+- name: Install TypeScript Loader
+  yarn:
+    name: ts-loader
+    global: yes
+
+- name: Install webpack
+  yarn:
+    name: webpack
+    global: yes
+
+- name: Install webpack CLI
+  yarn:
+    name: webpack-cli
+    global: yes
