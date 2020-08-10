@@ -14,6 +14,7 @@
     - nodejs
     - dotnet
     - corert
+    - dynamodb_local
 
 - hosts: user
 

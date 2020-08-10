@@ -1,0 +1,12 @@
+[Unit]
+Description=Dynamo DB Local Service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/java \
+  -Djava.library.path=/opt/dynamodb_local/DynamoDBLocal_lib \
+  -jar /opt/dynamodb_local/DynamoDBLocal.jar \
+  -sharedDb
+
+[Install]
+WantedBy=multi-user.target

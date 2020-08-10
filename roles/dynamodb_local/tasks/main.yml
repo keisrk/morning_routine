@@ -1,0 +1,23 @@
+---
+#
+- name: Ensure Dynamo DB Local directory exists
+  file:
+    path: /opt/dynamodb_local
+    state: directory
+
+- name: Download Dynamo DB JAR
+  unarchive:
+    src: https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/dynamodb_local_latest.tar.gz
+    dest: /opt/dynamodb_local
+    remote_src: yes
+
+- name: Place dynamodb service file
+  template:
+    src: dynamodb.service
+    dest: /etc/systemd/system/dynamodb.service
+
+- name: Start service dynamodb
+  systemd:
+    name: dynamodb
+    state: started
+    daemon_reload: yes
