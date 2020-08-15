@@ -15,6 +15,7 @@
     - dotnet
     - corert
     - dynamodb_local
+    - aws_cli
 
 - hosts: user
 

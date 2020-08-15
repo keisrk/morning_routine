@@ -1,0 +1,17 @@
+---
+# Install AWS CLI. Executable is available from awscli.amazonaws.com.
+
+- name: Create temp dir
+  tempfile:
+    state: directory
+    suffix: aws_cli
+  register: aws_cli
+
+- name: Download AWS CLI binary distribution and extract excutable
+  unarchive:
+    src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    dest: "{{ aws_cli.path }}"
+    remote_src: yes
+
+- name: Run the install script
+  shell: "{{ aws_cli.path }}/aws/install"
