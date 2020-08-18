@@ -16,6 +16,7 @@
     - corert
     - dynamodb_local
     - aws_cli
+    - mvctrl
 
 - hosts: user
 
