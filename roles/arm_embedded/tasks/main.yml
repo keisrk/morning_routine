@@ -1,4 +1,5 @@
-#
+# GDB for 32-bit Arm arch cannot be obtained from the package manager. Download
+# all the utilities from Arm Developer website.
 ---
 
 - name: Download file with check (md5)
@@ -12,3 +13,7 @@
   unarchive:
     src: /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
     dest: /usr/local
+
+- name: Install dependencies
+  apt:
+    name: openocd, screen

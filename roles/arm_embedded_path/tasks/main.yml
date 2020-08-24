@@ -3,4 +3,4 @@
 - name: Add path to user's path env
   lineinfile:
     dest: "{{ ansible_env.HOME }}/.profile"
-    line: 'export PATH=$PATH:/usr/local/gcc-arm-none-eabi-*/bin'
+    line: 'export PATH=$PATH:/usr/local/gcc-arm-none-eabi-9-2020-q2-update/bin'
