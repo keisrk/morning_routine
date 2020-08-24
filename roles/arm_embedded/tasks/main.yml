@@ -1,0 +1,14 @@
+#
+---
+
+- name: Download file with check (md5)
+  get_url:
+    url: "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/\
+         gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2"
+    dest: /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+    checksum: md5:2b9eeccc33470f9d3cda26983b9d2dc6
+
+- name: Extract files
+  unarchive:
+    src: /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+    dest: /usr/local

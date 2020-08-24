@@ -17,6 +17,7 @@
     - dynamodb_local
     - aws_cli
     - mvctrl
+    - arm_embedded
 
 - hosts: user
 
@@ -26,5 +27,6 @@
     - wasmpack
     - gradle_path
     - gopath
+    - arm_embedded_path
     - python3
     - npm
