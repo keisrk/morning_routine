@@ -1,0 +1,6 @@
+---
+# Meson requires ninja build.
+- name: Install Ninja build system
+  apt:
+    name: ninja-build
+    state: present

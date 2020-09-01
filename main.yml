@@ -12,6 +12,7 @@
     - gradle
     - golang
     - nodejs
+    - ninja
     - dotnet
     - corert
     - dynamodb_local
