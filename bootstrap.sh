@@ -29,7 +29,7 @@ apt-get upgrade -y
 log "Made system up-to-date."
 
 # Install bootstrap packages.
-apt-get install -y git dirmngr ansible
+apt-get install -y git dirmngr ansible python3-pip
 log "Installed bootstrap packages."
 
 cat <<EOF > ${BOOT_PLAYBOOK}
@@ -37,11 +37,6 @@ cat <<EOF > ${BOOT_PLAYBOOK}
 - hosts: localhost
 
   tasks:
-
-  - name: Install Python3 pip
-    apt:
-      name: python3-pip
-      state: present
 
   - name: Add an apt key by id from a keyserver
     apt_key:
