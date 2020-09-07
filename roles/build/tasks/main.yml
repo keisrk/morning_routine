@@ -1,6 +1,0 @@
----
-# Meson requires Ninja and CMake.
-- name: Install build systems
-  apt:
-    name: ninja-build, cmake, clang-format
-    state: present

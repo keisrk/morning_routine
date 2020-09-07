@@ -16,4 +16,4 @@
 
 - name: Install dependencies
   apt:
-    name: openocd, screen
+    name: openocd, screen, clang-format

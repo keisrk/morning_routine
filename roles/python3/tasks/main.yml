@@ -27,7 +27,7 @@
 
 - name: Install Meson
   pip:
-    name: meson
+    name: meson, ninja, cmake
     virtualenv: "{{ ansible_env.HOME }}/python_projects"
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.local/bin"
