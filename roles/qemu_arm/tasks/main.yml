@@ -1,0 +1,12 @@
+#
+---
+- name: Ensure xPack default directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/opt/xPacks"
+    state: directory
+
+- name: Install QEMU Arm
+  unarchive:
+    src: https://github.com/xpack-dev-tools/qemu-arm-xpack/releases/download/v2.8.0-9/xpack-qemu-arm-2.8.0-9-linux-x64.tar.gz
+    dest: "{{ ansible_env.HOME }}/opt/xPacks"
+    remote_src: yes

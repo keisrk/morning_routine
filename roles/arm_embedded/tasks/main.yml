@@ -14,6 +14,6 @@
     src: /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
     dest: /usr/local
 
-- name: Install dependencies
+- name: Install utilities
   apt:
     name: openocd, screen, clang-format

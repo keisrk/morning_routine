@@ -28,5 +28,6 @@
     - gradle_path
     - gopath
     - arm_embedded_path
+    - qemu_arm
     - python3
     - npm
