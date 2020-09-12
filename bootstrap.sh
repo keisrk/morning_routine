@@ -15,7 +15,7 @@ alias log='logger -s -t bootstrap.sh'
 
 export DEBIAN_FRONTEND=noninteractive
 
-ANSIBLE_VERSION="2.9"
+LATEST_ANSIBLE_VERSION="2.9" # Latest version shown in the Ansible documentation.
 BOOT_PLAYBOOK="$(mktemp -t bootstrap_XXXXXXXXXX.yml)"
 MAIN_PLAYBOOK="main.yml"
 MAIN_PLAYBOOK_REPO="https://github.com/keisrk/morning_routine"
@@ -57,8 +57,11 @@ EOF
 
 log "Created ${BOOT_PLAYBOOK}."
 
-# Check ansible's version.
-if ! ansible --version | head -n 1 | grep -q ${ANSIBLE_VERSION}
+# Obtain system's ansible version.
+SYSTEM_ANSIBLE_VERSION="$(dpkg-query --show --showformat '${Version}' ansible)"
+
+# Check if the version is the latest one.
+if dpkg --compare-versions ${SYSTEM_ANSIBLE_VERSION} lt ${LATEST_ANSIBLE_VERSION}
 then
     log "System's ansible is obsolete. Installing from upstream..."
 
