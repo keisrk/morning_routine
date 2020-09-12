@@ -5,7 +5,6 @@
 - name: Ensure a dependency of Node.js is present
   apt:
     name: gyp
-    state: latest
 
 - name: Add an apt key from a NodeSource's key server
   apt_key:
@@ -27,4 +26,3 @@
   apt:
     update_cache: yes
     name: nodejs
-    state: latest

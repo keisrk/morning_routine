@@ -20,7 +20,6 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
-    state: latest
 
 - name: Fetch docker-compose executable
   uri:

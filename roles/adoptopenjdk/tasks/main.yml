@@ -15,4 +15,3 @@
   apt:
     update_cache: yes
     name: adoptopenjdk-11-hotspot
-    state: latest

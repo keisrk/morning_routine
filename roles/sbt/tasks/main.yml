@@ -16,4 +16,3 @@
   apt:
     update_cache: yes
     name: sbt
-    state: latest

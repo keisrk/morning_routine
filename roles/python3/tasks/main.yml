@@ -20,14 +20,28 @@
 
 - name: Install Sphinx
   pip:
-    name: sphinx
+    name: sphinx, restview, rst2beamer3k
     virtualenv: "{{ ansible_env.HOME }}/python_projects"
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.local/bin"
 
-- name: Install Meson
+- name: Install Meson Build
   pip:
     name: meson, ninja, cmake
+    virtualenv: "{{ ansible_env.HOME }}/python_projects"
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.local/bin"
+
+- name: Install IPython
+  pip:
+    name: ipython
+    virtualenv: "{{ ansible_env.HOME }}/python_projects"
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.local/bin"
+
+- name: Install Black
+  pip:
+    name: black
     virtualenv: "{{ ansible_env.HOME }}/python_projects"
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.local/bin"
