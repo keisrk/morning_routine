@@ -1,5 +1,8 @@
 ---
 #
+- name: Install keyboard configuration packages
+  apt:
+    name: keyboard-configuration, console-setup
 
 - name: Move Ctrl key
   lineinfile:
