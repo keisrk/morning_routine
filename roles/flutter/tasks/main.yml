@@ -1,0 +1,16 @@
+---
+# Install Flutter UI framework.
+- name: Install Flutter
+  unarchive:
+    src: https://storage.googleapis.com/flutter_infra/releases/beta/linux/flutter_linux_1.23.0-18.1.pre-beta.tar.xz
+    dest: "{{ ansible_env.HOME }}/opt"
+    remote_src: yes
+
+- name: Add path to user's local path env
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.profile"
+    line: 'export PATH=$PATH:$HOME/opt/flutter/bin'
+
+# Configure Flutter for web development
+- name: Enable web support
+  command: "{{ ansible_env.HOME|quote }}/opt/flutter/bin/flutter config --enable-web"
