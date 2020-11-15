@@ -10,3 +10,9 @@
     src: https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/protoc-3.14.0-linux-x86_64.zip
     dest: "{{ ansible_env.HOME }}/opt/protobuf"
     remote_src: yes
+
+# Environment settings after installation
+- name: Add path to user's path env
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.profile"
+    line: 'export PATH=$PATH:$HOME/opt/protobuf/bin'
