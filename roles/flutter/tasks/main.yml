@@ -1,4 +1,10 @@
 ---
+# Prepare installation directory
+- name: Ensure default installation directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/opt"
+    state: directory
+
 # Install Flutter UI framework.
 - name: Install Flutter
   unarchive:

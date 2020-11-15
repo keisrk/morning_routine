@@ -31,3 +31,4 @@
     - qemu_arm
     - python3
     - npm
+    - flutter

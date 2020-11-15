@@ -1,5 +1,5 @@
-#
 ---
+#
 - name: Ensure xPack default directory exists
   file:
     path: "{{ ansible_env.HOME }}/opt/xPacks"
