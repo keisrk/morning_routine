@@ -1,0 +1,17 @@
+---
+# Desktop environment
+- name: Install Xfce window manager
+  apt:
+    name:
+      - xfce4
+      - xfce4-goodies
+
+- name: Setup VNC server
+  apt:
+    name: tightvncserver
+
+- name: Ensure GTK development dependencies exist
+  apt:
+    name:
+      - libgtk-3-dev
+      - libblkid-dev

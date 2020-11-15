@@ -18,6 +18,7 @@
     - aws_cli
     - mvctrl
     - arm_embedded
+    - desktop
 
 - hosts: user
 

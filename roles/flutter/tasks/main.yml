@@ -8,7 +8,7 @@
 # Install Flutter UI framework.
 - name: Install Flutter
   unarchive:
-    src: https://storage.googleapis.com/flutter_infra/releases/beta/linux/flutter_linux_1.23.0-18.1.pre-beta.tar.xz
+    src: https://storage.googleapis.com/flutter_infra/releases/dev/linux/flutter_linux_1.24.0-7.0.pre-dev.tar.xz
     dest: "{{ ansible_env.HOME }}/opt"
     remote_src: yes
 
@@ -20,3 +20,7 @@
 # Configure Flutter for web development
 - name: Enable web support
   command: "{{ ansible_env.HOME|quote }}/opt/flutter/bin/flutter config --enable-web"
+
+# Configure Flutter for linux desktop development
+- name: Enable linux desktop support
+  command: "{{ ansible_env.HOME|quote }}/opt/flutter/bin/flutter config --enable-linux-desktop"
