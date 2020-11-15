@@ -1,0 +1,12 @@
+---
+# Install Protocol Buffer Compiler
+- name: Ensure protoc installation directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/opt/protobuf"
+    state: directory
+
+- name: Install protoc
+  unarchive:
+    src: https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/protoc-3.14.0-linux-x86_64.zip
+    dest: "{{ ansible_env.HOME }}/opt/protobuf"
+    remote_src: yes
