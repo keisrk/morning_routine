@@ -2,18 +2,29 @@
 # all the utilities from Arm Developer website.
 ---
 
-- name: Download file with check (md5)
+- name: Install utilities
+  apt:
+    name: openocd, screen, clang-format
+
+- name: Download file for bare-metal target with check (md5)
   get_url:
     url: "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/\
          gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2"
     dest: /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
     checksum: md5:2b9eeccc33470f9d3cda26983b9d2dc6
 
-- name: Extract files
+- name: Extract files for bare-metal target
   unarchive:
     src: /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
     dest: /usr/local
 
-- name: Install utilities
-  apt:
-    name: openocd, screen, clang-format
+- name: Download file for linux-based target (Raspberry Pi)
+  get_url:
+    url: "https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/binrel/\
+         gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf.tar.xz"
+    dest: /tmp/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf.tar.xz
+
+- name: Extract files for linux-based target
+  unarchive:
+    src: /tmp/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf.tar.xz
+    dest: /usr/local
