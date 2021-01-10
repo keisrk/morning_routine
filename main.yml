@@ -25,7 +25,8 @@
   roles:
     - git
     - rustup
-    - wasmpack
+    # Disable wasmpack since installer fails to find rustup.
+    # - wasmpack
     - gradle_path
     - gopath
     - arm_embedded_path

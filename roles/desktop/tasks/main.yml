@@ -1,10 +1,8 @@
 ---
 # Desktop environment
-- name: Install Xfce window manager
+- name: Install Openbox
   apt:
-    name:
-      - xfce4
-      - xfce4-goodies
+    name: openbox
 
 - name: Setup VNC server
   apt:
