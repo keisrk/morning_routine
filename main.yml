@@ -9,6 +9,7 @@
     - docker
     - adoptopenjdk
     - sbt
+    - terraform
     - gradle
     - golang
     - nodejs
