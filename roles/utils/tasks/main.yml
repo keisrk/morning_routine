@@ -27,3 +27,8 @@
   apt:
     name: w3m
     state: present
+
+- name: Install misc utils
+  apt:
+    name: tree, jq
+    state: present
