@@ -14,4 +14,4 @@
 - name: Ensure AdoptOpenJDK is up to date
   apt:
     update_cache: yes
-    name: adoptopenjdk-11-hotspot
+    name: adoptopenjdk-15-hotspot
