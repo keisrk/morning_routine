@@ -8,7 +8,7 @@
 # Install Flutter UI framework.
 - name: Install Flutter
   unarchive:
-    src: https://storage.googleapis.com/flutter_infra/releases/dev/linux/flutter_linux_1.24.0-7.0.pre-dev.tar.xz
+    src: https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_2.0.3-stable.tar.xz
     dest: "{{ ansible_env.HOME }}/opt"
     remote_src: yes
 
