@@ -20,3 +20,8 @@
   yarn:
     name: webpack-cli
     global: yes
+
+- name: Install AWS CDK
+  yarn:
+    name: aws-cdk
+    global: yes
