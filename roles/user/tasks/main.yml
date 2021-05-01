@@ -2,36 +2,50 @@
 # Defines a user.
 #
 
+- name: Check if a user already exists
+  getent:
+    database: passwd
+    key: "{{ user_name }}"
+    fail_key: no
+
 # Later you need to set password, i.e., $ sudo passwd {{ user_name }}
-- name: Create a user with a disabled password
+- name: Create a fresh user with a disabled password
   user:
     name: '{{ user_name }}'
     comment: '{{ user_gecos }}'
     password: '!'
     shell: /bin/bash
     generate_ssh_key: yes
-  register: user_result
+  when: getent_passwd[user_name] == None
+  register: new_user
+
+- name: Get the user's home
+  set_fact:
+    user_home: "{{
+      (getent_passwd[user_name] == None)
+      | ternary(new_user.home, getent_passwd[user_name][4])
+    }}"
 
 - name: Provide an authorized key
   authorized_key:
     user: "{{ user_name }}"
     state: present
-    key: "{{ lookup('file', '{{ user_result.home }}/.ssh/id_rsa.pub') }}"
+    key: "{{ lookup('file', '{{ user_home }}/.ssh/id_rsa.pub') }}"
     manage_dir: False
-  register: authorized_key_result
+  register: auth_key
 
 - name: Set proper permissions to user's SSH config dir
   file:
-    path: "{{ authorized_key_result.keyfile | dirname }}"
+    path: "{{ auth_key.keyfile | dirname }}"
     state: directory
-    owner: "{{ authorized_key_result.user }}"
+    owner: "{{ auth_key.user }}"
     mode: 0700
 
 - name: Set proper permissions to the authorized key
   file:
-    path: "{{ authorized_key_result.keyfile }}"
+    path: "{{ auth_key.keyfile }}"
     state: file
-    owner: "{{ authorized_key_result.user }}"
+    owner: "{{ auth_key.user }}"
     mode: 0600
 
 - name: Include sudo files
