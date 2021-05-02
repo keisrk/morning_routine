@@ -14,4 +14,4 @@
 - name: Ensure AdoptOpenJDK is up to date
   apt:
     update_cache: yes
-    name: adoptopenjdk-{{version}}
+    name: adoptopenjdk-{{ version }}

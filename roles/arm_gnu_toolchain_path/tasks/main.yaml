@@ -1,0 +1,12 @@
+---
+
+# Environment settings after installation
+- name: Add path to user's path env (bare-metal)
+  lineinfile:
+    dest: '{{ ansible_env.HOME }}/.profile'
+    line: export PATH=$PATH:/usr/local/gcc-arm-none-eabi-*/bin
+
+- name: Add path to user's path env (linux-based)
+  lineinfile:
+    dest: '{{ ansible_env.HOME }}/.profile'
+    line: export PATH=$PATH:/usr/local/gcc-arm-*-arm-none-linux-gnueabihf/bin

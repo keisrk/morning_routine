@@ -1,0 +1,14 @@
+---
+
+- name: Download file for bare-metal target
+  get_url:
+    url: "https://developer.arm.com/-/media/Files/downloads/gnu-rm/\
+      {{ quarter }}/gcc-arm-none-eabi-{{ version }}-x86_64-linux.tar.bz2"
+    dest: /tmp/gcc-arm-none-eabi-{{ version }}-x86_64-linux.tar.bz2
+  vars:
+    quarter: "{{ '%s-%s%s' % *version.split('-')[0:3] }}"
+
+- name: Extract files for bare-metal target
+  unarchive:
+    src: /tmp/gcc-arm-none-eabi-{{ version }}-x86_64-linux.tar.bz2
+    dest: /usr/local

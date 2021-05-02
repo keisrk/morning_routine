@@ -1,0 +1,17 @@
+# GDB for 32-bit Arm arch cannot be obtained from the package manager. Download
+# all the utilities from Arm Developer website.
+---
+
+- name: Install utilities
+  apt:
+    name: libncurses5, openocd, screen, clang-format
+
+- name: Install ARM toolchain for bare-metal target
+  import_tasks: arm_none_eabi.yaml
+  vars:
+    version: "{{ versions.arm_none_eabi }}"
+
+- name: Install ARM toolchain for linux target with hard float
+  import_tasks: arm_none_linux_gnueabihf.yaml
+  vars:
+    version: "{{ versions.arm_none_linux_gnueabihf }}"

@@ -1,0 +1,1 @@
+versions: "{{ lookup('file', 'vars/versions.yaml') | from_yaml }}"

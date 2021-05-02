@@ -1,0 +1,13 @@
+---
+
+- name: Download file for linux-based target (Raspberry Pi)
+  get_url:
+    url: "https://developer.arm.com/-/media/Files/downloads/gnu-a/\
+      {{ version }}/binrel/\
+      gcc-arm-{{ version }}-x86_64-arm-none-linux-gnueabihf.tar.xz"
+    dest: /tmp/gcc-arm-{{ version }}-x86_64-arm-none-linux-gnueabihf.tar.xz
+
+- name: Extract files for linux-based target
+  unarchive:
+    src: /tmp/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf.tar.xz
+    dest: /usr/local

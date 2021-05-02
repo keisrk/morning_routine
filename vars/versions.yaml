@@ -2,7 +2,7 @@
 
 adoptopenjdk: 15-hotspot
 arm_none_eabi: 9-2020q2-update
-arm_linux_gnueabihf: 9.2-2019.12
+arm_none_linux_gnueabihf: 9.2-2019.12
 docker_compose: 1.26.2
 dotnet: 3.1
 gradle: 7.0

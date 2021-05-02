@@ -1,0 +1,5 @@
+---
+
+- name: Show all defined variables
+  debug:
+    msg: "{{ version }}"
