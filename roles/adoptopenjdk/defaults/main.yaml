@@ -1,0 +1,6 @@
+version: >-
+  {{
+    lookup('file', 'vars/versions.yaml')
+    | from_yaml
+    | ansible.utils.get_path('adoptopenjdk')
+  }}
