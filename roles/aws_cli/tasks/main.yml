@@ -14,4 +14,6 @@
     remote_src: yes
 
 - name: Run the install script
-  shell: "{{ aws_cli.path }}/aws/install --update"
+  command:
+    cmd: "{{ aws_cli.path }}/aws/install --update"
+    creates: /usr/local/aws-cli/aws

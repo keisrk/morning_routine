@@ -16,11 +16,3 @@
   lineinfile:
     dest: "{{ ansible_env.HOME }}/.profile"
     line: 'export PATH=$PATH:$HOME/opt/flutter/bin'
-
-# Configure Flutter for web development
-- name: Enable web support
-  command: "{{ ansible_env.HOME|quote }}/opt/flutter/bin/flutter config --enable-web"
-
-# Configure Flutter for linux desktop development
-- name: Enable linux desktop support
-  command: "{{ ansible_env.HOME|quote }}/opt/flutter/bin/flutter config --enable-linux-desktop"

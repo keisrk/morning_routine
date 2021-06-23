@@ -15,4 +15,4 @@
   unarchive:
     src: https://services.gradle.org/distributions/gradle-6.5-bin.zip
     dest: /opt/gradle
-    remote_src: yes
+    remote_src: true
