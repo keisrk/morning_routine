@@ -8,7 +8,7 @@
     - user
     - docker
     - adoptopenjdk
-    - sbt
+    # - sbt
     - terraform
     - gradle
     - golang
