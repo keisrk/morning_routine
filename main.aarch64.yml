@@ -6,20 +6,14 @@
   roles:
     - utils
     - user
-    - docker
     - adoptopenjdk
-    # - sbt
-    - terraform
-    - gradle
-    - golang
+    # Segmentation fault on aarch64 Docker
+    # - gradle
     - nodejs
-    - dotnet
+    # No package matching 'dotnet-sdk-3.1' is available
+    # - dotnet
     - corert
-    - dynamodb_local
-    - aws_cli
     - mvctrl
-    - arm_embedded
-    - desktop
 
 - hosts: user
 
@@ -27,10 +21,5 @@
     - git
     - rustup
     - gradle_path
-    - gopath
-    - arm_embedded_path
-    - qemu_arm
     - python3
     - npm
-    - yarn
-    - flutter

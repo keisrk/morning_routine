@@ -5,10 +5,7 @@
 
 all:
   hosts:
-    localhost:
+    system:
       ansible_connection: local
     user:
-      ansible_user: "{{ user_name }}"
-      ansible_host: localhost
-      ansible_connection: ssh
-      ansible_ssh_private_key_file: "/home/{{ user_name }}/.ssh/id_rsa"
+      ansible_connection: local

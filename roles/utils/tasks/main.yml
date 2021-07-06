@@ -30,5 +30,5 @@
 
 - name: Install misc utils
   apt:
-    name: tree, jq
+    name: bash-completion, tree, jq
     state: present

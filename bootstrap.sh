@@ -17,7 +17,7 @@ if [ -d "/run/systemd/system" ]
 then
     alias log='logger -s -t bootstrap.sh'
 else
-    alias log 'echo'
+    alias log='echo'
 fi
 
 export DEBIAN_FRONTEND=noninteractive
@@ -36,7 +36,7 @@ apt-get upgrade -y
 log "Made system up-to-date."
 
 # Install bootstrap packages.
-apt-get install -y git dirmngr ansible python3-pip
+apt-get install -y sudo git dirmngr ansible python3-pip
 log "Installed bootstrap packages."
 
 cat <<EOF > ${BOOT_PLAYBOOK}
@@ -85,7 +85,16 @@ ansible-pull -v \
     --url ${MAIN_PLAYBOOK_REPO} \
     --checkout ${MAIN_PLAYBOOK_BRANCH} \
     --inventory hosts \
-    --limit localhost,user \
+    --limit system \
     ${MAIN_PLAYBOOK}
+
+# FIXME: PermissionError: [Errno 13] Permission denied: b'/root/.ansible'
+#
+# sudo -E -u ${USER_NAME} ansible-pull -v \
+#     --url ${MAIN_PLAYBOOK_REPO} \
+#     --checkout ${MAIN_PLAYBOOK_BRANCH} \
+#     --inventory hosts \
+#     --limit user \
+#     ${MAIN_PLAYBOOK}
 
 log "Ansible completed the main playbook."
