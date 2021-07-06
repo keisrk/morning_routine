@@ -7,19 +7,26 @@
 # an administrator privilege and its usage is simply "$ sudo sh
 # /path/to/bootstrap.sh".
 
-# For development, specify a branch to checkout by setting DEV_BRANCH. By
+# For development, specify a branch to checkout by setting ANSIBLE_BRANCH. By
 # default it checks out master branch.
 
 set -e
-alias log='logger -s -t bootstrap.sh'
+
+# Check if the host is running the systemd init system.
+if [ -d "/run/systemd/system" ]
+then
+    alias log='logger -s -t bootstrap.sh'
+else
+    alias log 'echo'
+fi
 
 export DEBIAN_FRONTEND=noninteractive
 
 LATEST_ANSIBLE_VERSION="2.9" # Latest version shown in the Ansible documentation.
 BOOT_PLAYBOOK="$(mktemp -t bootstrap_XXXXXXXXXX.yml)"
-MAIN_PLAYBOOK="main.yml"
+MAIN_PLAYBOOK=${ANSIBLE_MAIN:-main.yml}
 MAIN_PLAYBOOK_REPO="https://github.com/keisrk/morning_routine"
-MAIN_PLAYBOOK_BRANCH=${DEV_BRANCH:-master}
+MAIN_PLAYBOOK_BRANCH=${ANSIBLE_BRANCH:-master}
 
 log "Started bootstrap script."
 
