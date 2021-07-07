@@ -19,9 +19,3 @@
   lineinfile:
     dest: "{{ ansible_env.HOME }}/.profile"
     line: 'export PATH=$PATH:${HOME}/.npm-packages/bin'
-
-# Use yarn to handle dependency
-- name: Install yarn
-  npm:
-    name: yarn
-    global: yes

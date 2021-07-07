@@ -32,5 +32,4 @@
     - qemu_arm
     - python3
     - npm
-    - yarn
     - flutter

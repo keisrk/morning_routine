@@ -26,18 +26,3 @@
   apt:
     update_cache: yes
     name: nodejs
-
-# Segmentation fault on aarch64 Docker # Yarn
-# - name: Add an apt key from a yarnpkg's key server
-#   apt_key:
-#     url: https://dl.yarnpkg.com/debian/pubkey.gpg
-#
-# - name: Add Yarn repo
-#   apt_repository:
-#     filename: yarn
-#     repo: deb https://dl.yarnpkg.com/debian/ stable main
-#
-# - name: Ensure Yarn is up to date
-#   apt:
-#     update_cache: yes
-#     name: yarn

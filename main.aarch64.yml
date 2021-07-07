@@ -10,8 +10,6 @@
     # Segmentation fault on aarch64 Docker
     # - gradle
     - nodejs
-    # No package matching 'dotnet-sdk-3.1' is available
-    # - dotnet
     - corert
     - mvctrl
 
