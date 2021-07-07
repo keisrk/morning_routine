@@ -27,6 +27,9 @@ BOOT_PLAYBOOK="$(mktemp -t bootstrap_XXXXXXXXXX.yml)"
 MAIN_PLAYBOOK=${ANSIBLE_MAIN:-main.yml}
 MAIN_PLAYBOOK_REPO="https://github.com/keisrk/morning_routine"
 MAIN_PLAYBOOK_BRANCH=${ANSIBLE_BRANCH:-master}
+# Fix the ansible working directory
+ANSIBLE_LOCAL_TEMP=/tmp/.ansible/tmp
+ANSIBLE_REMOTE_TEMP=/tmp/.ansible/tmp
 
 log "Started bootstrap script."
 
@@ -71,11 +74,7 @@ SYSTEM_ANSIBLE_VERSION="$(dpkg-query --show --showformat '${Version}' ansible)"
 if dpkg --compare-versions ${SYSTEM_ANSIBLE_VERSION} lt ${LATEST_ANSIBLE_VERSION}
 then
     log "System's ansible is obsolete. Installing from upstream..."
-
-    ANSIBLE_LOCAL_TEMP=/tmp/.ansible/tmp \
-    ANSIBLE_REMOTE_TEMP=/tmp/.ansible/tmp \
     ansible-playbook ${BOOT_PLAYBOOK}
-
     log "Installed $(ansible --version | head -n 1)"
 else
     log "Matched to the right version of ansible. Proceeding..."
@@ -88,13 +87,12 @@ ansible-pull -v \
     --limit system \
     ${MAIN_PLAYBOOK}
 
-# FIXME: PermissionError: [Errno 13] Permission denied: b'/root/.ansible'
-#
-# sudo -E -u ${USER_NAME} ansible-pull -v \
-#     --url ${MAIN_PLAYBOOK_REPO} \
-#     --checkout ${MAIN_PLAYBOOK_BRANCH} \
-#     --inventory hosts \
-#     --limit user \
-#     ${MAIN_PLAYBOOK}
+sudo -u ${USER_NAME:-guest} \
+    ansible-pull -v \
+    --url ${MAIN_PLAYBOOK_REPO} \
+    --checkout ${MAIN_PLAYBOOK_BRANCH} \
+    --inventory hosts \
+    --limit user \
+    ${MAIN_PLAYBOOK}
 
 log "Ansible completed the main playbook."
