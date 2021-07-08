@@ -87,7 +87,7 @@ ansible-pull -v \
     --limit system \
     ${MAIN_PLAYBOOK}
 
-sudo -u ${USER_NAME:-guest} \
+sudo -E -u ${USER_NAME:-guest} \
     ansible-pull -v \
     --url ${MAIN_PLAYBOOK_REPO} \
     --checkout ${MAIN_PLAYBOOK_BRANCH} \
