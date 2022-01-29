@@ -9,7 +9,7 @@
     # - adoptopenjdk
     # Segmentation fault on aarch64 Docker
     # - gradle
-    - nodejs
+    # - nodejs
     - corert
     - mvctrl
 
@@ -20,4 +20,4 @@
     - rustup
     - gradle_path
     - python3
-    - npm
+    # - npm
