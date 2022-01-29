@@ -2,7 +2,7 @@
 FROM ghcr.io/linuxserver/openssh-server:latest as buildstage
 
 ## Single layer deployed image ##
-FROM ghcr.io/linuxserver/baseimage-ubuntu:focal
+FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
 
 ARG USER_NAME=guest
 ARG USER_GECOS="Guest Account"

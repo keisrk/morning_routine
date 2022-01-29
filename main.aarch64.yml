@@ -6,7 +6,7 @@
   roles:
     - utils
     - user
-    - adoptopenjdk
+    # - adoptopenjdk
     # Segmentation fault on aarch64 Docker
     # - gradle
     - nodejs
