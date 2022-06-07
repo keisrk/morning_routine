@@ -48,10 +48,32 @@ cat <<EOF > ${BOOT_PLAYBOOK}
 
   tasks:
 
-  - name: Add upstream repository of the latest ansible
+  - name: Add upstream repository of the latest ansible to Ubuntu
     apt_repository:
       filename: ansible
       repo: ppa:ansible/ansible
+    when: ansible_distribution == 'Ubuntu'
+
+  - name: Add upstream repository of the latest ansible to Debian
+    block:
+      - name: Add an apt key by id from a keyserver
+        apt_key:
+          keyserver: keyserver.ubuntu.com
+          id: 93C4A3FD7BB9C367
+
+      - name: Use matching ubuntu release
+        apt_repository:
+          filename: ansible
+          repo: "deb http://ppa.launchpad.net/ansible/ansible/ubuntu\
+            {{ releases[ansible_distribution_release] }} main"
+        vars:
+          releases:
+            bullseye: focal
+            buster: bionic
+            stretch: xenial
+            jessie: trusty
+
+    when: ansible_distribution == 'Debian'
 
   - name: Ensure ansible is up to date
     apt:
