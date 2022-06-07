@@ -8,7 +8,7 @@
 # /path/to/bootstrap.sh".
 
 # For development, specify a branch to checkout by setting ANSIBLE_BRANCH. By
-# default it checks out master branch.
+# default it checks out main branch.
 
 set -e
 
@@ -26,7 +26,7 @@ LATEST_ANSIBLE_VERSION="2.9" # Latest version shown in the Ansible documentation
 BOOT_PLAYBOOK="$(mktemp -t bootstrap_XXXXXXXXXX.yml)"
 MAIN_PLAYBOOK=${ANSIBLE_MAIN:-main.yml}
 MAIN_PLAYBOOK_REPO="https://github.com/keisrk/morning_routine"
-MAIN_PLAYBOOK_BRANCH=${ANSIBLE_BRANCH:-master}
+MAIN_PLAYBOOK_BRANCH=${ANSIBLE_BRANCH:-main}
 # Fix the ansible working directory
 ANSIBLE_LOCAL_TEMP=/tmp/.ansible/tmp
 ANSIBLE_REMOTE_TEMP=/tmp/.ansible/tmp

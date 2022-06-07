@@ -18,4 +18,4 @@ passwd <USER_NAME>`` and enter a new password for the user.
    export USER_NAME=guest
    export USER_GECOS="Guest Account"
    export USER_EMAIL=guest@morningrouti.ne
-   curl -sL https://raw.githubusercontent.com/keisrk/morning_routine/master/bootstrap.sh | sh
+   curl -sL https://raw.githubusercontent.com/keisrk/morning_routine/main/bootstrap.sh | sh
