@@ -22,7 +22,7 @@ fi
 
 export DEBIAN_FRONTEND=noninteractive
 
-LATEST_ANSIBLE_VERSION="2.9" # Latest version shown in the Ansible documentation.
+LATEST_ANSIBLE_VERSION="5.9" # Latest version shown in the Ansible documentation.
 BOOT_PLAYBOOK="$(mktemp -t bootstrap_XXXXXXXXXX.yml)"
 MAIN_PLAYBOOK=${ANSIBLE_MAIN:-main.yml}
 MAIN_PLAYBOOK_REPO="https://github.com/keisrk/morning_routine"
@@ -48,15 +48,10 @@ cat <<EOF > ${BOOT_PLAYBOOK}
 
   tasks:
 
-  - name: Add an apt key by id from a keyserver
-    apt_key:
-      keyserver: keyserver.ubuntu.com
-      id: 93C4A3FD7BB9C367
-
   - name: Add upstream repository of the latest ansible
     apt_repository:
       filename: ansible
-      repo: deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main
+      repo: ppa:ansible/ansible
 
   - name: Ensure ansible is up to date
     apt:
