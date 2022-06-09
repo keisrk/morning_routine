@@ -7,15 +7,15 @@
     - utils
     - user
     - docker
-    - adoptopenjdk
+    # - adoptopenjdk
     # - sbt
     - terraform
-    - gradle
+    # - gradle
     - golang
     - nodejs
     - dotnet
     - corert
-    - dynamodb_local
+    # - dynamodb_local
     - aws_cli
     - mvctrl
     - arm_embedded
@@ -26,7 +26,7 @@
   roles:
     - git
     - rustup
-    - gradle_path
+    # - gradle_path
     - gopath
     - arm_embedded_path
     - qemu_arm

@@ -110,6 +110,7 @@ sudo -E -H -u ${USER_NAME:-guest} \
     --checkout ${MAIN_PLAYBOOK_BRANCH} \
     --inventory hosts \
     --limit user \
+    install_requirements.yml \
     ${MAIN_PLAYBOOK}
 
 log "Ansible completed the main playbook."
