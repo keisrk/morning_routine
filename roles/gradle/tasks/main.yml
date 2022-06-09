@@ -1,11 +1,6 @@
 ---
 # Install Gradle.
 
-- name: Ensure an unarchving tool is present
-  apt:
-    name: unzip
-    state: present
-
 - name: Ensure gradle directory exists
   file:
     path: /opt/gradle

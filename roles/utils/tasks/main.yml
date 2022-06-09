@@ -1,6 +1,11 @@
 ---
 # Enhance CLI life
 
+- name: Ensure an unarchving tool is present
+  apt:
+    name: unzip
+    state: present
+
 - name: Install tmux
   apt:
     name: tmux
