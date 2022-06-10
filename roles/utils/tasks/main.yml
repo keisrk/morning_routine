@@ -1,9 +1,13 @@
 ---
-# Enhance CLI life
 
-- name: Ensure an unarchving tool is present
+- name: Miscellaneous utils
   apt:
-    name: unzip
+    name: curl, debianutils, findutils
+    state: present
+
+- name: Ensure archving tools are present
+  apt:
+    name: tar, unzip, zip
     state: present
 
 - name: Install tmux
@@ -33,7 +37,7 @@
     name: w3m
     state: present
 
-- name: Install misc utils
+- name: Enhance CLI life
   apt:
     name: bash-completion, tree, jq
     state: present

@@ -1,0 +1,12 @@
+---
+
+- name: Install JVM friends
+  import_role:
+    name: comcast.sdkman
+  vars:
+    sdkman_auto_answer: true
+    sdkman_install_packages:
+      - { candidate: java, version: 17.0.3-tem }
+      - { candidate: gradle, version: 7.4.2 }
+      - { candidate: maven, version: 3.8.5 }
+      - { candidate: sbt, version: 1.6.2 }

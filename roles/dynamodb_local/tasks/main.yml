@@ -1,23 +1,28 @@
 ---
-#
+
 - name: Ensure Dynamo DB Local directory exists
   file:
-    path: /opt/dynamodb_local
+    path: "{{ansible_env.HOME}}/opt/dynamodb"
     state: directory
 
 - name: Download Dynamo DB JAR
   unarchive:
     src: https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/dynamodb_local_latest.tar.gz
-    dest: /opt/dynamodb_local
+    dest: "{{ansible_env.HOME}}/opt/dynamodb"
     remote_src: yes
+
+- name: Ensure user service directory exists
+  file:
+    path: "{{ansible_env.HOME}}/.config/systemd/user"
+    state: directory
 
 - name: Place dynamodb service file
   template:
     src: dynamodb.service
-    dest: /etc/systemd/system/dynamodb.service
+    dest: "{{ansible_env.HOME}}/.config/systemd/user/dynamodb.service"
 
-- name: Start service dynamodb
+- name: Enable dynamodb service
   systemd:
     name: dynamodb
-    state: started
-    daemon_reload: yes
+    scope: user
+    enabled: true

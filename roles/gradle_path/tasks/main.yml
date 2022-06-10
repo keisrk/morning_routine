@@ -1,6 +1,0 @@
----
-# Environment settings after installation
-- name: Add path to user's path env
-  lineinfile:
-    dest: "{{ ansible_env.HOME }}/.profile"
-    line: 'export PATH=$PATH:/opt/gradle/gradle-6.5/bin'
