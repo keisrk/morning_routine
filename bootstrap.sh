@@ -97,20 +97,27 @@ else
     log "Matched to the right version of ansible. Proceeding..."
 fi
 
-ansible-pull -v \
+# Ansible Pull only handles a single playbook at a time. This is fixed in the
+# version 2.11 or later. See also PR #73172.
+for playbook in install_requirements.yml ${MAIN_PLAYBOOK}
+do
+    ansible-pull -v \
     --url ${MAIN_PLAYBOOK_REPO} \
     --checkout ${MAIN_PLAYBOOK_BRANCH} \
     --inventory hosts \
     --limit system \
-    ${MAIN_PLAYBOOK}
+    ${playbook}
+done
 
-sudo -E -H -u ${USER_NAME:-guest} \
+for playbook in install_requirements.yml ${MAIN_PLAYBOOK}
+do
+    sudo -E -H -u ${USER_NAME:-guest} \
     ansible-pull -v \
     --url ${MAIN_PLAYBOOK_REPO} \
     --checkout ${MAIN_PLAYBOOK_BRANCH} \
     --inventory hosts \
     --limit user \
-    install_requirements.yml \
-    ${MAIN_PLAYBOOK}
+    ${playbook}
+done
 
 log "Ansible completed the main playbook."
