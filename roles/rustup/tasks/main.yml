@@ -8,6 +8,7 @@
   register: this
 
 - name: Execute rustup script
-  shell:
+  command:
     cmd: sh -s -- -y
     stdin: "{{ this.content }}"
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/rustup"

@@ -8,11 +8,13 @@
   file:
     path: "{{ ansible_env.HOME }}/.npm"
     state: directory
+    mode: 0755
 
 - name: Make npm install packages in user's dir
   lineinfile:
     dest: "{{ ansible_env.HOME }}/.npmrc"
     line: 'prefix = ${HOME}/.npm-packages'
+    mode: 0755
     create: yes
 
 - name: Add node-package's bin dir to user's path env

@@ -60,3 +60,4 @@
     line: '{{ user_name }} ALL=(ALL) ALL'
     create: yes
     validate: 'visudo -cf %s'
+    mode: 0644

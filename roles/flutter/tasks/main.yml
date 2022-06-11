@@ -1,14 +1,16 @@
 ---
+
 # Prepare installation directory
 - name: Ensure default installation directory exists
   file:
     path: "{{ ansible_env.HOME }}/opt"
     state: directory
+    mode: 0755
 
 # Install Flutter UI framework.
 - name: Install Flutter
   unarchive:
-    src: https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_2.0.3-stable.tar.xz
+    src: https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.0.2-stable.tar.xz
     dest: "{{ ansible_env.HOME }}/opt"
     remote_src: yes
 
@@ -16,11 +18,3 @@
   lineinfile:
     dest: "{{ ansible_env.HOME }}/.profile"
     line: 'export PATH=$PATH:$HOME/opt/flutter/bin'
-
-# Configure Flutter for web development
-- name: Enable web support
-  command: "{{ ansible_env.HOME|quote }}/opt/flutter/bin/flutter config --enable-web"
-
-# Configure Flutter for linux desktop development
-- name: Enable linux desktop support
-  command: "{{ ansible_env.HOME|quote }}/opt/flutter/bin/flutter config --enable-linux-desktop"

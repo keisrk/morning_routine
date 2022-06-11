@@ -11,4 +11,6 @@
     line: XKBOPTIONS="ctrl:nocaps"
 
 - name: Reflect changes to the config file
-  shell: dpkg-reconfigure -phigh console-setup
+  command: dpkg-reconfigure -phigh console-setup
+  register: output
+  changed_when: output.rc != 0
