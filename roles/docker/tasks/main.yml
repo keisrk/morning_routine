@@ -1,5 +1,5 @@
 ---
-#
+
 # Docker repo
 - name: Add Docker's official GPG key
   apt_key:
@@ -7,11 +7,8 @@
 
 - name: Add Docker repo
   apt_repository:
-    filename: sbt
-    repo: "deb [arch=amd64]
-      https://download.docker.com/linux/{{ docker_distro }}
-      {{ docker_release }}
-      stable"
+    filename: docker
+    repo: "deb https://download.docker.com/linux/{{ docker_distro }} {{ docker_release }} stable"
 
 - name: Ensure Docker is up to date
   apt:
@@ -20,11 +17,4 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
-
-- name: Fetch docker-compose executable
-  uri:
-    url: "https://github.com/docker/compose/releases/download/\
-      1.29.2/\
-      docker-compose-Linux-x86_64"
-    dest: /usr/local/bin/docker-compose
-    mode: +x
+      - docker-compose-plugin
