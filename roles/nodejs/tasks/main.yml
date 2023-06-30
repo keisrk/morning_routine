@@ -26,3 +26,10 @@
   apt:
     update_cache: yes
     name: nodejs
+
+# Setting up Chrome Linux sandbox for puppeteer
+- name: Enable user namespace cloning
+  ansible.posix.sysctl:
+    name: kernel.unprivileged_userns_clone
+    value: '1'
+    state: present

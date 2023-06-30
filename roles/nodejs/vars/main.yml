@@ -1,2 +1,2 @@
-nodejs_version: node_14.x
+nodejs_version: node_18.x
 nodejs_release: "{{ ansible_distribution_release }}"
