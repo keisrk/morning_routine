@@ -80,6 +80,9 @@ cat <<EOF > ${BOOT_PLAYBOOK}
       name: ansible
       update_cache: yes
       state: latest
+      dpkg_options: 'force-confold,force-confdef,force-overwrite'
+      autoremove: yes
+
 EOF
 
 log "Created ${BOOT_PLAYBOOK}."
