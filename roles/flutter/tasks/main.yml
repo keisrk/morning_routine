@@ -5,14 +5,14 @@
   file:
     path: "{{ ansible_env.HOME }}/opt"
     state: directory
-    mode: 0755
+    mode: "0755"
 
 # Install Flutter UI framework.
 - name: Install Flutter
   unarchive:
     src: https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.0.2-stable.tar.xz
     dest: "{{ ansible_env.HOME }}/opt"
-    remote_src: yes
+    remote_src: true
 
 - name: Add path to user's local path env
   lineinfile:

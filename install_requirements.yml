@@ -1,7 +1,9 @@
 ---
 
 # See also PR #76535 Ansible Pull + Ansible Galaxy Integration.
-- hosts: all
+- name: Install Ansible Galaxy requirements
+  hosts: all
   tasks:
-    - name:  Install Ansible Galaxy requirements
+    - name: Install Ansible Galaxy requirements
       command: ansible-galaxy install -r roles/requirements.yml
+      changed_when: true

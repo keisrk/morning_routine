@@ -4,13 +4,13 @@
   file:
     path: "{{ ansible_env.HOME }}/opt/protobuf"
     state: directory
-    mode: 0755
+    mode: "0755"
 
 - name: Install protoc
   unarchive:
     src: https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/protoc-3.14.0-linux-x86_64.zip
     dest: "{{ ansible_env.HOME }}/opt/protobuf"
-    remote_src: yes
+    remote_src: true
 
 # Environment settings after installation
 - name: Add path to user's path env

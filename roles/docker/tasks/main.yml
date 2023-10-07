@@ -12,9 +12,22 @@
 
 - name: Ensure Docker is up to date
   apt:
-    update_cache: yes
+    update_cache: true
     name:
       - docker-ce
       - docker-ce-cli
       - containerd.io
       - docker-compose-plugin
+
+# Manage Docker as a non-root user
+- name: Create the docker group
+  group:
+    name: docker
+    state: present
+    gid: 1750
+
+- name: Add the user to the docker group
+  user:
+    name: "{{ user_name }}"
+    groups: docker
+    append: true

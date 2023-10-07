@@ -24,7 +24,7 @@
 
 - name: Ensure Node.js is up to date
   apt:
-    update_cache: yes
+    update_cache: true
     name: nodejs
 
 # Setting up Chrome Linux sandbox for puppeteer

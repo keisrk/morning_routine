@@ -4,7 +4,7 @@
 - name: Fetch rustup script and store it in this.content
   uri:
     url: https://sh.rustup.rs
-    return_content: yes
+    return_content: true
   register: this
 
 - name: Execute rustup script

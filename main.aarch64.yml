@@ -1,23 +1,19 @@
 ---
 # Main playbook targeting localhost only.
 
-- hosts: system
+- name: Entrypoint for the root
+  hosts: system
 
   roles:
     - utils
     - user
-    # - adoptopenjdk
-    # Segmentation fault on aarch64 Docker
-    # - gradle
-    # - nodejs
     - corert
     - mvctrl
 
-- hosts: user
+- name: Entrypoint for the user
+  hosts: user
 
   roles:
     - git
     - rustup
-    - gradle_path
     - python3
-    # - npm

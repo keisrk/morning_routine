@@ -11,7 +11,7 @@
   unarchive:
     src: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}.zip
     dest: "{{ aws_cli.path }}"
-    remote_src: yes
+    remote_src: true
 
 - name: Run the install script
   command: "{{ aws_cli.path }}/aws/install --update"

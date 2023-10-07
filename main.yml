@@ -1,7 +1,8 @@
 ---
 # Main playbook targeting localhost only.
 
-- hosts: system
+- name: Entrypoint for the root
+  hosts: system
 
   roles:
     - utils
@@ -17,7 +18,8 @@
     - arm_embedded
     - desktop
 
-- hosts: user
+- name: Entrypoint for the user
+  hosts: user
 
   roles:
     - git
@@ -29,4 +31,3 @@
     - python3
     - npm
     - flutter
-    # - dynamodb_local

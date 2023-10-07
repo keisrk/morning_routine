@@ -13,7 +13,7 @@
       {{ dotnet_distro }}/\
       {{ dotnet_release }}/\
       prod.list"
-    return_content: yes
+    return_content: true
   register: this
 
 - name: Register .NET SDK official repository
@@ -23,6 +23,6 @@
 
 - name: Ensure .NET SDK is up to date
   apt:
-    update_cache: yes
+    update_cache: true
     package: dotnet-sdk-{{ dotnet_version }}
     state: present

@@ -5,7 +5,7 @@
   file:
     path: "{{ ansible_env.HOME }}/python_projects"
     state: directory
-    mode: 0755
+    mode: "0755"
 
 - name: Install virtualenv via pip3
   pip:

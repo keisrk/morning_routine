@@ -5,5 +5,5 @@
   unarchive:
     src: https://golang.org/dl/go{{ golang_version }}.linux-{{ golang_arch }}.tar.gz
     dest: /usr/local
-    remote_src: yes
+    remote_src: true
     extra_opts: [--gzip]

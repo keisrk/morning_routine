@@ -12,6 +12,7 @@
          gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2"
     dest: /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
     checksum: md5:2b9eeccc33470f9d3cda26983b9d2dc6
+    mode: "0644"
 
 - name: Extract files for bare-metal target
   unarchive:
@@ -23,6 +24,7 @@
     url: "https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/binrel/\
          gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf.tar.xz"
     dest: /tmp/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf.tar.xz
+    mode: "0644"
 
 - name: Extract files for linux-based target
   unarchive:

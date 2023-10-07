@@ -4,25 +4,25 @@
   file:
     path: "{{ ansible_env.HOME }}/opt/dynamodb"
     state: directory
-    mode: 0755
+    mode: "0755"
 
 - name: Download Dynamo DB JAR
   unarchive:
     src: https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/dynamodb_local_latest.tar.gz
     dest: "{{ ansible_env.HOME }}/opt/dynamodb"
-    remote_src: yes
+    remote_src: true
 
 - name: Ensure user service directory exists
   file:
     path: "{{ ansible_env.HOME }}/.config/systemd/user"
     state: directory
-    mode: 0755
+    mode: "0755"
 
 - name: Place dynamodb service file
   template:
     src: dynamodb.service
     dest: "{{ ansible_env.HOME }}/.config/systemd/user/dynamodb.service"
-    mode: 0755
+    mode: "0755"
 
 - name: Enable dynamodb service
   systemd:

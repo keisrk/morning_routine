@@ -4,7 +4,7 @@
   file:
     path: "{{ ansible_env.HOME }}/go"
     state: directory
-    mode: 0755
+    mode: "0755"
 
 - name: Add path to user's path env
   lineinfile:
@@ -16,7 +16,7 @@
     dest: "{{ ansible_env.HOME }}/.profile"
     line: 'export PATH=$PATH:$HOME/go/bin'
 
-- name: add GOPATH to user's .profile
+- name: Add GOPATH to user's .profile
   lineinfile:
     dest: "{{ ansible_env.HOME }}/.profile"
     line: 'export GOPATH=$HOME/go'
