@@ -9,44 +9,44 @@
     fail_key: false
 
 # Later you need to set password, i.e., $ sudo passwd {{ user_name }}
-- name: Create a fresh user with a disabled password
-  user:
-    name: '{{ user_name }}'
-    comment: '{{ user_gecos }}'
-    password: '!'
-    shell: /bin/bash
-    generate_ssh_key: true
+- name: Create and set up the fresh user
   when: getent_passwd[user_name] == None
-  register: new_user
+  block:
 
-- name: Get the user's home
-  set_fact:
-    user_home: "{{
-      (getent_passwd[user_name] == None)
-      | ternary(new_user.home, getent_passwd[user_name][4])
-    }}"
+    - name: Create a fresh user with a disabled password
+      user:
+        name: '{{ user_name }}'
+        comment: '{{ user_gecos }}'
+        password: '!'
+        shell: /bin/bash
+        generate_ssh_key: true
+      register: new_user
 
-- name: Provide an authorized key
-  authorized_key:
-    user: "{{ user_name }}"
-    state: present
-    key: "{{ lookup('file', '{{ user_home }}/.ssh/id_rsa.pub') }}"
-    manage_dir: false
-  register: auth_key
+    - name: Get the user's home
+      set_fact:
+        user_home: "{{ new_user.home }}"
 
-- name: Set proper permissions to user's SSH config dir
-  file:
-    path: "{{ auth_key.keyfile | dirname }}"
-    state: directory
-    owner: "{{ auth_key.user }}"
-    mode: "0700"
+    - name: Provide an authorized key
+      authorized_key:
+        user: "{{ user_name }}"
+        state: present
+        key: "{{ lookup('file', '{{ user_home }}/.ssh/id_rsa.pub') }}"
+        manage_dir: false
+      register: auth_key
 
-- name: Set proper permissions to the authorized key
-  file:
-    path: "{{ auth_key.keyfile }}"
-    state: file
-    owner: "{{ auth_key.user }}"
-    mode: "0600"
+    - name: Set proper permissions to user's SSH config dir
+      file:
+        path: "{{ auth_key.keyfile | dirname }}"
+        state: directory
+        owner: "{{ auth_key.user }}"
+        mode: "0700"
+
+    - name: Set proper permissions to the authorized key
+      file:
+        path: "{{ auth_key.keyfile }}"
+        state: file
+        owner: "{{ auth_key.user }}"
+        mode: "0600"
 
 - name: Include sudo files
   lineinfile:
