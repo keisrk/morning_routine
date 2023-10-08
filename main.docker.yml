@@ -7,8 +7,12 @@
   roles:
     - utils
     - user
+    - terraform
+    - golang
+    - nodejs
+    - dotnet
     - corert
-    - mvctrl
+    - aws_cli
 
 - name: Entrypoint for the user
   hosts: user
@@ -16,4 +20,7 @@
   roles:
     - git
     - rustup
+    - jvm
+    - gopath
     - python3
+    - npm

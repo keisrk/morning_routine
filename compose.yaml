@@ -1,0 +1,25 @@
+---
+
+version: "3.9"
+
+services:
+
+  ssh:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_NAME: ${USER_NAME}
+        USER_GECOS: ${USER_GECOS}
+        USER_EMAIL: ${USER_EMAIL}
+        ANSIBLE_MAIN: ${ANSIBLE_MAIN}
+    image: morning:latest
+    container_name: morning
+    hostname: morning
+    environment:
+      - PUBLIC_KEY_FILE=/ssh-key.pub
+    volumes:
+      - ${PUBLIC_KEY_FILE}:/ssh-key.pub
+    ports:
+      - 2222:2222
+    restart: unless-stopped

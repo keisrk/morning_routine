@@ -7,7 +7,7 @@ FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
 ARG USER_NAME=guest
 ARG USER_GECOS="Guest Account"
 ARG USER_EMAIL=guest@morningrouti.ne
-ARG ANSIBLE_MAIN=main.aarch64.yml
+ARG ANSIBLE_MAIN=main.docker.yml
 
 # Use the bootstrap script
 COPY ./bootstrap.sh /bootstrap.sh
@@ -21,8 +21,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Cherry-pick files from openssh-server
 COPY --from=buildstage /keygen.sh /keygen.sh
-COPY --from=buildstage /etc/services.d/openssh-server /etc/services.d/openssh-server
-COPY --from=buildstage /etc/cont-init.d /etc/cont-init.d
+COPY --from=buildstage /etc/motd /etc/motd
+COPY --from=buildstage /etc/s6-overlay/s6-rc.d /etc/s6-overlay/s6-rc.d
 
 # A build script taken from linuxserver/openssh-server
 RUN \
