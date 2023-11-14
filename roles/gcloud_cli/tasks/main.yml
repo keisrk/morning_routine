@@ -1,0 +1,19 @@
+---
+
+# Install gcloud CLI.
+- name: Add the Google Cloud GPG key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    keyring: /usr/share/keyrings/cloud.google.gpg
+
+- name: Add the gcloud CLI Linux repository
+  apt_repository:
+    filename: google-cloud-sdk.list
+    repo: deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main
+
+- name: Update and install gcloud CLI
+  apt:
+    update_cache: true
+    name:
+      - google-cloud-cli
+      - gke-gcloud-auth-plugin

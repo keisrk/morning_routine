@@ -17,6 +17,7 @@
     - mvctrl
     - arm_embedded
     - desktop
+    - gcloud_cli
 
 - name: Entrypoint for the user
   hosts: user
