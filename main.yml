@@ -11,11 +11,11 @@
     - terraform
     - golang
     - nodejs
-    - dotnet
     - corert
     - aws_cli
     - arm_embedded
     - gcloud_cli
+    # - dotnet
     # - desktop
     # - mvctrl
 

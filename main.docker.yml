@@ -10,9 +10,9 @@
     - terraform
     - golang
     - nodejs
-    - dotnet
     - corert
     - aws_cli
+    # - dotnet
 
 - name: Entrypoint for the user
   hosts: user
