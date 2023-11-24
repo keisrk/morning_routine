@@ -14,10 +14,10 @@
     - dotnet
     - corert
     - aws_cli
-    - mvctrl
     - arm_embedded
-    - desktop
     - gcloud_cli
+    # - desktop
+    # - mvctrl
 
 - name: Entrypoint for the user
   hosts: user
@@ -31,4 +31,4 @@
     - qemu_arm
     - python3
     - npm
-    - flutter
+    # - flutter
