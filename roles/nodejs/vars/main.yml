@@ -1,2 +1,0 @@
-nodejs_version: node_18.x
-nodejs_release: "{{ ansible_distribution_release }}"

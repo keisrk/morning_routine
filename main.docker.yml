@@ -9,10 +9,8 @@
     - user
     - terraform
     - golang
-    - nodejs
     - corert
     - aws_cli
-    # - dotnet
 
 - name: Entrypoint for the user
   hosts: user
@@ -23,4 +21,4 @@
     - jvm
     - gopath
     - python3
-    - npm
+    - morgangraphics.ansible-role-nvm

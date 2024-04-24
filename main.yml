@@ -10,14 +10,10 @@
     - docker
     - terraform
     - golang
-    - nodejs
     - corert
     - aws_cli
     - arm_embedded
     - gcloud_cli
-    # - dotnet
-    # - desktop
-    # - mvctrl
 
 - name: Entrypoint for the user
   hosts: user
@@ -30,5 +26,4 @@
     - arm_embedded_path
     - qemu_arm
     - python3
-    - npm
-    # - flutter
+    - morgangraphics.ansible-role-nvm

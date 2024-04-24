@@ -2,3 +2,4 @@
 
 roles:
   - name: comcast.sdkman
+  - name: morgangraphics.ansible-role-nvm
