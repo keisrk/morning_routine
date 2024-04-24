@@ -2,7 +2,7 @@
 
 - name: Miscellaneous utils
   apt:
-    name: curl, debianutils, findutils
+    name: curl, debianutils, findutils, python3-venv
     state: present
 
 - name: Ensure archving tools are present

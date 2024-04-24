@@ -7,15 +7,11 @@
     state: directory
     mode: "0755"
 
-- name: Install virtualenv via pip3
-  pip:
-    name: virtualenv
-    executable: pip3
-
 - name: Install Ansible Lint
   pip:
     name: ansible, ansible-lint
     virtualenv: "{{ ansible_env.HOME }}/python_projects"
+    virtualenv_command: python3 -m venv
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.local/bin"
 
@@ -23,6 +19,7 @@
   pip:
     name: sphinx, restview, rst2beamer3k
     virtualenv: "{{ ansible_env.HOME }}/python_projects"
+    virtualenv_command: python3 -m venv
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.local/bin"
 
@@ -30,6 +27,7 @@
   pip:
     name: meson
     virtualenv: "{{ ansible_env.HOME }}/python_projects"
+    virtualenv_command: python3 -m venv
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.local/bin"
 
@@ -37,6 +35,7 @@
   pip:
     name: ipython
     virtualenv: "{{ ansible_env.HOME }}/python_projects"
+    virtualenv_command: python3 -m venv
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.local/bin"
 
@@ -44,5 +43,6 @@
   pip:
     name: black
     virtualenv: "{{ ansible_env.HOME }}/python_projects"
+    virtualenv_command: python3 -m venv
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.local/bin"
