@@ -1,14 +1,14 @@
 ---
 
 # Docker repo
-- name: Add Docker's official GPG key
-  apt_key:
-    url: "https://download.docker.com/linux/{{ docker_distro }}/gpg"
-
-- name: Add Docker repo
-  apt_repository:
-    filename: docker
-    repo: "deb https://download.docker.com/linux/{{ docker_distro }} {{ docker_release }} stable"
+- name: Add Docker Module Repository
+  deb822_repository:
+    name: docker
+    types: deb
+    uris: "https://download.docker.com/linux/{{ ansible_distribution | lower }}"
+    signed_by: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
+    suites: "{{ ansible_distribution_release | lower }}"
+    components: stable
 
 - name: Ensure Docker is up to date
   apt:

@@ -1,2 +1,0 @@
-docker_distro: "{{ ansible_distribution | lower }}"
-docker_release: "{{ ansible_distribution_release }}"

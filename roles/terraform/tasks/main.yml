@@ -2,14 +2,14 @@
 # Install Terraform from an official deb repository.
 
 # Terraform repo
-- name: Add the HashiCorp GPG key
-  apt_key:
-    url: https://apt.releases.hashicorp.com/gpg
-
-- name: Add the official HashiCorp Linux repository
-  apt_repository:
-    filename: terraform
-    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }}  main
+- name: Add Hashicorp Stable APT repository
+  deb822_repository:
+    name: hashicorp
+    types: deb
+    uris: "https://apt.releases.hashicorp.com"
+    signed_by: "https://apt.releases.hashicorp.com/gpg"
+    suites: "{{ ansible_distribution_release|lower }}"
+    components: main
 
 - name: Update and install Terraform
   apt:

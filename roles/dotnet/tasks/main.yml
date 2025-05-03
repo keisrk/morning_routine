@@ -2,27 +2,28 @@
 # Install .NET SDK. An official deb package is available.
 
 # .NET repo
-- name: Add an apt key .NET keyserver
-  apt_key:
-    url: https://packages.microsoft.com/keys/microsoft.asc
-    state: present
+- name: Add Microsoft prod APT repository (Debian)
+  when: ansible_distribution == 'Debian'
+  deb822_repository:
+    name: packages-microsoft-com-prod
+    types: deb
+    uris: "https://packages.microsoft.com/{{ ansible_distribution|lower }}/{{ ansible_distribution_major_version }}/prod"
+    signed_by: "https://packages.microsoft.com/keys/microsoft.asc"
+    suites: "{{ ansible_distribution_release|lower }}"
+    components: main
 
-- name: Fetch product list
-  uri:
-    url: "https://packages.microsoft.com/config/\
-      {{ dotnet_distro }}/\
-      {{ dotnet_release }}/\
-      prod.list"
-    return_content: true
-  register: this
-
-- name: Register .NET SDK official repository
-  apt_repository:
-    filename: dotnet-sdk
-    repo: "{{ this.content }}"
+- name: Add Microsoft prod APT repository (Ubuntu)
+  when: ansible_distribution == 'Ubuntu'
+  deb822_repository:
+    name: packages-microsoft-com-prod
+    types: deb
+    uris: "https://packages.microsoft.com/{{ ansible_distribution|lower }}/{{ ansible_distribution_version }}/prod"
+    signed_by: "https://packages.microsoft.com/keys/microsoft.asc"
+    suites: "{{ ansible_distribution_release|lower }}"
+    components: main
 
 - name: Ensure .NET SDK is up to date
   apt:
     update_cache: true
-    package: dotnet-sdk-{{ dotnet_version }}
+    package: dotnet-sdk-9.0
     state: present

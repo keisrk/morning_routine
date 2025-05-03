@@ -1,3 +1,0 @@
-dotnet_version: 7.0
-dotnet_distro: "{{ ansible_distribution | lower }}"
-dotnet_release: "{{ (dotnet_distro == 'debian') | ternary(ansible_distribution_major_version, ansible_distribution_version) }}"
