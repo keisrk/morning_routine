@@ -1,14 +1,19 @@
 #!/bin/sh
 
-# As an initial step, install git, ansible and friends. Sometimes ansible from
-# the main archive is too old. A bootstrap playbook makes the system's
-# conservative ansible upgrade itself to the latest version. Subsequently
-# proceed to the main playbook with ansible-pull. This script must be run with
-# an administrator privilege and its usage is simply "$ sudo sh
-# /path/to/bootstrap.sh".
-
-# For development, specify a branch to checkout by setting ANSIBLE_BRANCH. By
-# default it checks out main branch.
+# This script bootstraps the system by installing Git, Ansible, and related tools.
+#
+# Note:
+# The version of Ansible in the system's default repositories may be outdated.
+# To ensure the latest version, this script uses `pipx` to install Ansible.
+# Once installed, the script runs the main configuration using `ansible-pull`.
+#
+# Usage:
+#   Run this script with administrator privileges:
+#     $ sudo sh /path/to/bootstrap.sh
+#
+# Development:
+#   To use a specific branch of the playbook repository, set the `ANSIBLE_BRANCH` environment variable.
+#   If not specified, the script defaults to the `main` branch.
 
 set -e
 
@@ -22,8 +27,6 @@ fi
 
 export DEBIAN_FRONTEND=noninteractive
 
-LATEST_ANSIBLE_VERSION="5.9" # Latest version shown in the Ansible documentation.
-BOOT_PLAYBOOK="$(mktemp -t bootstrap_XXXXXXXXXX.yml)"
 MAIN_PLAYBOOK=${ANSIBLE_MAIN:-main.yml}
 MAIN_PLAYBOOK_REPO="https://github.com/keisrk/morning_routine"
 MAIN_PLAYBOOK_BRANCH=${ANSIBLE_BRANCH:-main}
@@ -39,88 +42,33 @@ apt-get upgrade -y
 log "Made system up-to-date."
 
 # Install bootstrap packages.
-apt-get install -y sudo git dirmngr ansible python3-pip
+apt-get install -y sudo git dirmngr pipx python3-pip
 log "Installed bootstrap packages."
 
-cat <<EOF > ${BOOT_PLAYBOOK}
----
-- hosts: localhost
+# Install Ansible via pipx.
+# Note that pipx from Debian repo doesn't have --global option of ensurepath subcommand.
+# Manually supply installation options.
+PIPX_HOME=/opt/pipx \
+PIPX_BIN_DIR=/usr/local/bin \
+PIPX_MAN_DIR=/usr/local/share/man \
+pipx install --force --include-deps ansible
+log "Installed $(ansible --version)"
 
-  tasks:
-
-  - name: Add upstream repository of the latest ansible to Ubuntu
-    apt_repository:
-      filename: ansible
-      repo: ppa:ansible/ansible
-    when: ansible_distribution == 'Ubuntu'
-
-  - name: Add upstream repository of the latest ansible to Debian
-    block:
-      - name: Add an apt key by id from a keyserver
-        apt_key:
-          keyserver: keyserver.ubuntu.com
-          id: 93C4A3FD7BB9C367
-
-      - name: Use matching ubuntu release
-        apt_repository:
-          filename: ansible
-          repo: "deb http://ppa.launchpad.net/ansible/ansible/ubuntu\
-            {{ releases[ansible_distribution_release] }} main"
-        vars:
-          releases:
-            bullseye: focal
-            buster: bionic
-            stretch: xenial
-            jessie: trusty
-
-    when: ansible_distribution == 'Debian'
-
-  - name: Ensure ansible is up to date
-    apt:
-      name: ansible
-      update_cache: yes
-      state: latest
-      dpkg_options: 'force-confold,force-confdef,force-overwrite'
-      autoremove: yes
-
-EOF
-
-log "Created ${BOOT_PLAYBOOK}."
-
-# Obtain system's ansible version.
-SYSTEM_ANSIBLE_VERSION="$(dpkg-query --show --showformat '${Version}' ansible)"
-
-# Check if the version is the latest one.
-if dpkg --compare-versions ${SYSTEM_ANSIBLE_VERSION} lt ${LATEST_ANSIBLE_VERSION}
-then
-    log "System's ansible is obsolete. Installing from upstream..."
-    ansible-playbook ${BOOT_PLAYBOOK}
-    log "Installed $(ansible --version | head -n 1)"
-else
-    log "Matched to the right version of ansible. Proceeding..."
-fi
-
-# Ansible Pull only handles a single playbook at a time. This is fixed in the
-# version 2.11 or later. See also PR #73172.
-for playbook in install_requirements.yml ${MAIN_PLAYBOOK}
-do
-    ansible-pull -v \
+# Invoke `ansible-pull` twice: once as root for system-level setup, and once as
+# the unprivileged user for user-level configuration.
+ansible-pull -v \
     --url ${MAIN_PLAYBOOK_REPO} \
     --checkout ${MAIN_PLAYBOOK_BRANCH} \
     --inventory hosts \
     --limit system \
-    ${playbook}
-done
+    install_requirements.yml ${MAIN_PLAYBOOK}
 
-for playbook in install_requirements.yml ${MAIN_PLAYBOOK}
-do
-    sudo -E -H -u ${USER_NAME:-guest} \
+sudo -E -H -u ${USER_NAME:-guest} \
     ansible-pull -v \
     --url ${MAIN_PLAYBOOK_REPO} \
     --checkout ${MAIN_PLAYBOOK_BRANCH} \
     --inventory hosts \
     --limit user \
-    ${playbook}
-done
+    install_requirements.yml ${MAIN_PLAYBOOK}
 
 log "Ansible completed the main playbook."
