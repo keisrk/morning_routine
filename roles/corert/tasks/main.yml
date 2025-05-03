@@ -17,5 +17,5 @@
       - libcurl4-openssl-dev
       - zlib1g-dev
       - libkrb5-dev
-      - libtinfo5
+      - libtinfo6
     state: present
