@@ -1,7 +1,7 @@
 ---
 # Main playbook targeting localhost only.
 
-- name: Entrypoint for the root
+- name: Entrypoint for root
   hosts: system
 
   roles:
