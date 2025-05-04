@@ -1,0 +1,15 @@
+---
+
+# Install OPKSSH and configure sshd.
+
+- name: Fetch installer script and store it in this.content
+  uri:
+    url: https://raw.githubusercontent.com/openpubkey/opkssh/main/scripts/install-linux.sh
+    return_content: true
+  register: this
+
+- name: Execute installer script
+  command:
+    cmd: bash
+    stdin: "{{ this.content }}"
+    creates: /usr/local/bin/opkssh

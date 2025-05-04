@@ -7,6 +7,7 @@
   roles:
     - utils
     - user
+    - opkssh
     - docker
     - terraform
     - golang
@@ -20,6 +21,7 @@
 
   roles:
     - git
+    - opkssh_user
     - rustup
     - jvm
     - gopath

@@ -1,0 +1,14 @@
+---
+
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ ansible_env.HOME }}/.opk"
+    state: directory
+    mode: "0700"
+
+- name: Place a locally scoped auth_id file
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.opk/auth_id"
+    line: "{{ user_name }} {{ user_email }} https://accounts.google.com"
+    create: true
+    mode: "0600"
