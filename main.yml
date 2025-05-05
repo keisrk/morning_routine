@@ -15,6 +15,7 @@
     - aws_cli
     - arm_embedded
     - gcloud_cli
+    - gh_cli
 
 - name: Entrypoint for the user
   hosts: user

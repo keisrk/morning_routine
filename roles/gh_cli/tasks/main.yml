@@ -1,0 +1,18 @@
+---
+
+# Install GitHub CLI from the official repository.
+
+# GitHub repo
+- name: Add GitHub Stable APT repository
+  deb822_repository:
+    name: github-cli
+    types: deb
+    uris: https://cli.github.com/packages
+    signed_by: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+    suites: stable
+    components: main
+
+- name: Update and install gh
+  apt:
+    update_cache: true
+    name: gh
