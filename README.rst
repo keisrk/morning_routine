@@ -2,7 +2,9 @@
 Morning Routine
 ===============
 
-Ansible playbook that gets your ducks in a row over a cup of coffee.
+☕ A caffeine kick for your AI agent.
+
+`morning_routine` is a zero-config bootstrap script that turns a hollow VPS into a disposable & familiar workspace for the day.
 
 Usage
 =====

@@ -29,4 +29,3 @@
     - arm_embedded_path
     - qemu_arm
     - python3
-    - morgangraphics.ansible-role-nvm
