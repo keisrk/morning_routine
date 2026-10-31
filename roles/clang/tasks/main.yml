@@ -1,0 +1,10 @@
+---
+# Clang C/C++ compiler toolchain
+
+- name: Install Clang and libc++ development packages
+  apt:
+    name:
+      - clang-20
+      - libc++-20-dev
+      - libc++abi-20-dev
+    state: present

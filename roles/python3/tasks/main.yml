@@ -25,7 +25,7 @@
 
 - name: Install Meson Build
   pip:
-    name: meson
+    name: meson, ninja
     virtualenv: "{{ ansible_env.HOME }}/python_projects"
     virtualenv_command: python3 -m venv
   environment:
