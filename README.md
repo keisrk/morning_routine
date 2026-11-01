@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/smSaTjY.png" width="400" alt="Morning Routine" />
+  <img src="https://i.imgur.com/8RJcfQp.png" width="400" alt="Morning Routine" />
 </p>
 
 # Morning Routine
