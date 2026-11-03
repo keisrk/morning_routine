@@ -1,8 +1,19 @@
 ---
 # Clang C/C++ compiler toolchain
 
+# LLVM repo
+- name: Add LLVM toolchain APT repository
+  deb822_repository:
+    name: llvm-toolchain-20
+    types: deb
+    uris: "https://apt.llvm.org/{{ ansible_distribution_release | lower }}/"
+    signed_by: "https://apt.llvm.org/llvm-snapshot.gpg.key"
+    suites: "llvm-toolchain-{{ ansible_distribution_release | lower }}-20"
+    components: main
+
 - name: Install Clang and libc++ development packages
   apt:
+    update_cache: true
     name:
       - clang-20
       - libc++-20-dev
