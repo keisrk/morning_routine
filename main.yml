@@ -16,6 +16,7 @@
     - arm_embedded
     - gcloud_cli
     - gh_cli
+    - glab_cli
     - clang
 
 - name: Entrypoint for the user

@@ -1,0 +1,12 @@
+---
+# GitLab CLI version and architecture mappings
+glab_version: "1.128.0"
+
+glab_arch_map:
+  x86_64: amd64
+  amd64: amd64
+  aarch64: arm64
+  arm64: arm64
+  armv6l: armv6
+  armv7l: armv6
+  i386: "386"

@@ -1,0 +1,7 @@
+---
+# Install GitLab CLI (glab) from official release deb package.
+
+- name: Download and install glab
+  apt:
+    deb: "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/{{ glab_version }}/glab_{{ glab_version }}_linux_{{ glab_arch_map[ansible_architecture] | default('amd64') }}.deb"
+    state: present
