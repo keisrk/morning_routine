@@ -18,11 +18,10 @@
 set -e
 
 # Check if the host is running the systemd init system.
-if [ -d "/run/systemd/system" ]
-then
-    alias log='logger -s -t bootstrap.sh'
+if [ -d "/run/systemd/system" ]; then
+    log() { logger -s -t bootstrap.sh "$@"; }
 else
-    alias log='echo'
+    log() { echo "$@"; }
 fi
 
 export DEBIAN_FRONTEND=noninteractive
@@ -30,9 +29,6 @@ export DEBIAN_FRONTEND=noninteractive
 MAIN_PLAYBOOK=${ANSIBLE_MAIN:-main.yml}
 MAIN_PLAYBOOK_REPO="https://github.com/keisrk/morning_routine"
 MAIN_PLAYBOOK_BRANCH=${ANSIBLE_BRANCH:-main}
-# Fix the ansible working directory
-ANSIBLE_LOCAL_TEMP=/tmp/.ansible/tmp
-ANSIBLE_REMOTE_TEMP=/tmp/.ansible/tmp
 
 log "Started bootstrap script."
 

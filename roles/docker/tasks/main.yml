@@ -5,10 +5,17 @@
   deb822_repository:
     name: docker
     types: deb
-    uris: "https://download.docker.com/linux/{{ ansible_distribution | lower }}"
-    signed_by: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
-    suites: "{{ ansible_distribution_release | lower }}"
+    uris: "https://download.docker.com/linux/{{ ansible_facts['distribution'] | lower }}"
+    signed_by: "https://download.docker.com/linux/{{ ansible_facts['distribution'] | lower }}/gpg"
+    suites: "{{ ansible_facts['distribution_release'] | lower }}"
     components: stable
+
+# Create the docker group before installing docker-ce so the package uses GID 1750
+- name: Create the docker group
+  group:
+    name: docker
+    state: present
+    gid: 1750
 
 - name: Ensure Docker is up to date
   apt:
@@ -20,12 +27,6 @@
       - docker-compose-plugin
 
 # Manage Docker as a non-root user
-- name: Create the docker group
-  group:
-    name: docker
-    state: present
-    gid: 1750
-
 - name: Add the user to the docker group
   user:
     name: "{{ user_name }}"

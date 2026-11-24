@@ -11,4 +11,4 @@
   command:
     cmd: sh -s -- -y
     stdin: "{{ rustup_installer.content }}"
-    creates: "{{ ansible_env.HOME }}/.cargo/bin/rustup"
+    creates: "{{ ansible_facts['env']['HOME'] }}/.cargo/bin/rustup"

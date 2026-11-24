@@ -2,21 +2,21 @@
 # Environment settings after installation
 - name: Create local dir as Go expects
   file:
-    path: "{{ ansible_env.HOME }}/go"
+    path: "{{ ansible_facts['env']['HOME'] }}/go"
     state: directory
     mode: "0755"
 
 - name: Add path to user's path env
   lineinfile:
-    dest: "{{ ansible_env.HOME }}/.profile"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.profile"
     line: 'export PATH=$PATH:/usr/local/go/bin'
 
 - name: Add path to user's local path env
   lineinfile:
-    dest: "{{ ansible_env.HOME }}/.profile"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.profile"
     line: 'export PATH=$PATH:$HOME/go/bin'
 
 - name: Add GOPATH to user's .profile
   lineinfile:
-    dest: "{{ ansible_env.HOME }}/.profile"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.profile"
     line: 'export GOPATH=$HOME/go'

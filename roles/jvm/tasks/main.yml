@@ -14,17 +14,17 @@
   block:
     - name: Create OpenAPI tools installation directory
       file:
-        path: "{{ ansible_env.HOME }}/bin/openapitools"
+        path: "{{ ansible_facts['env']['HOME'] }}/bin/openapitools"
         state: directory
         mode: "0755"
 
     - name: Download Bash Launcher Script
       get_url:
         url: https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh
-        dest: "{{ ansible_env.HOME }}/bin/openapitools/openapi-generator-cli"
+        dest: "{{ ansible_facts['env']['HOME'] }}/bin/openapitools/openapi-generator-cli"
         mode: "0751"
 
     - name: Add path to user's local path env
       lineinfile:
-        dest: "{{ ansible_env.HOME }}/.profile"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.profile"
         line: 'export PATH=$PATH:$HOME/bin/openapitools'
