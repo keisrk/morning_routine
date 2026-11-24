@@ -57,7 +57,7 @@ ansible-pull -v \
     --checkout "${MAIN_PLAYBOOK_BRANCH}" \
     --inventory hosts \
     --limit system \
-    "${MAIN_PLAYBOOK}"
+    install_requirements.yml "${MAIN_PLAYBOOK}"
 
 sudo -E -H -u "${USER_NAME:-guest}" \
     ansible-pull -v \
