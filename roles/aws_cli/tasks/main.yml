@@ -15,5 +15,9 @@
 
 - name: Run the install script
   command: "{{ aws_cli_tempdir.path }}/aws/install --update"
-  register: aws_cli_install_output
-  changed_when: aws_cli_install_output.rc != 0
+  changed_when: true
+
+- name: Clean up temp dir
+  file:
+    path: "{{ aws_cli_tempdir.path }}"
+    state: absent

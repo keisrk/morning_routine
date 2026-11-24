@@ -8,6 +8,8 @@
 
 - name: Install QEMU Arm
   unarchive:
-    src: https://github.com/xpack-dev-tools/qemu-arm-xpack/releases/download/v9.2.4-1/xpack-qemu-arm-9.2.4-1-linux-x64.tar.gz
+    src: "https://github.com/xpack-dev-tools/qemu-arm-xpack/releases/download/\
+      v{{ qemu_arm_version }}/xpack-qemu-arm-{{ qemu_arm_version }}-linux-\
+      {{ qemu_arm_arch_map[ansible_facts['architecture']] | default('x64') }}.tar.gz"
     dest: "{{ ansible_facts['env']['HOME'] }}/opt/xPacks"
     remote_src: true

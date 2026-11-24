@@ -7,41 +7,18 @@
     state: directory
     mode: "0755"
 
-- name: Install Ansible Lint
+- name: Install Python development packages
   pip:
-    name: ansible, ansible-lint
-    virtualenv: "{{ ansible_facts['env']['HOME'] }}/python_projects"
-    virtualenv_command: python3 -m venv
-  environment:
-    PATH: "{{ ansible_facts['env']['PATH'] }}:{{ ansible_facts['env']['HOME'] }}/.local/bin"
-
-- name: Install Sphinx
-  pip:
-    name: sphinx, restview, rst2beamer3k
-    virtualenv: "{{ ansible_facts['env']['HOME'] }}/python_projects"
-    virtualenv_command: python3 -m venv
-  environment:
-    PATH: "{{ ansible_facts['env']['PATH'] }}:{{ ansible_facts['env']['HOME'] }}/.local/bin"
-
-- name: Install Meson Build
-  pip:
-    name: meson, ninja
-    virtualenv: "{{ ansible_facts['env']['HOME'] }}/python_projects"
-    virtualenv_command: python3 -m venv
-  environment:
-    PATH: "{{ ansible_facts['env']['PATH'] }}:{{ ansible_facts['env']['HOME'] }}/.local/bin"
-
-- name: Install IPython
-  pip:
-    name: ipython
-    virtualenv: "{{ ansible_facts['env']['HOME'] }}/python_projects"
-    virtualenv_command: python3 -m venv
-  environment:
-    PATH: "{{ ansible_facts['env']['PATH'] }}:{{ ansible_facts['env']['HOME'] }}/.local/bin"
-
-- name: Install Black
-  pip:
-    name: black
+    name:
+      - ansible
+      - ansible-lint
+      - sphinx
+      - restview
+      - rst2beamer3k
+      - meson
+      - ninja
+      - ipython
+      - black
     virtualenv: "{{ ansible_facts['env']['HOME'] }}/python_projects"
     virtualenv_command: python3 -m venv
   environment:

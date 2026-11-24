@@ -3,7 +3,7 @@
 
 - name: Download golang binary distribution and extract excutable
   unarchive:
-    src: https://golang.org/dl/go{{ golang_version }}.linux-{{ golang_arch }}.tar.gz
+    src: "https://golang.org/dl/go{{ golang_version }}.linux-{{ golang_arch_map[ansible_facts['architecture']] | default('amd64') }}.tar.gz"
     dest: /usr/local
     remote_src: true
     extra_opts: [--gzip]

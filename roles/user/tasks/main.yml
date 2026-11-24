@@ -10,7 +10,7 @@
 
 # Later you need to set password, i.e., $ sudo passwd {{ user_name }}
 - name: Create and set up the fresh user
-  when: getent_passwd[user_name] == None
+  when: getent_passwd[user_name] is none
   block:
 
     - name: Create a fresh user with a disabled password

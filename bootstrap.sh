@@ -53,18 +53,18 @@ log "Installed $(ansible --version)"
 # Invoke `ansible-pull` twice: once as root for system-level setup, and once as
 # the unprivileged user for user-level configuration.
 ansible-pull -v \
-    --url ${MAIN_PLAYBOOK_REPO} \
-    --checkout ${MAIN_PLAYBOOK_BRANCH} \
+    --url "${MAIN_PLAYBOOK_REPO}" \
+    --checkout "${MAIN_PLAYBOOK_BRANCH}" \
     --inventory hosts \
     --limit system \
-    install_requirements.yml ${MAIN_PLAYBOOK}
+    "${MAIN_PLAYBOOK}"
 
-sudo -E -H -u ${USER_NAME:-guest} \
+sudo -E -H -u "${USER_NAME:-guest}" \
     ansible-pull -v \
-    --url ${MAIN_PLAYBOOK_REPO} \
-    --checkout ${MAIN_PLAYBOOK_BRANCH} \
+    --url "${MAIN_PLAYBOOK_REPO}" \
+    --checkout "${MAIN_PLAYBOOK_BRANCH}" \
     --inventory hosts \
     --limit user \
-    install_requirements.yml ${MAIN_PLAYBOOK}
+    install_requirements.yml "${MAIN_PLAYBOOK}"
 
 log "Ansible completed the main playbook."

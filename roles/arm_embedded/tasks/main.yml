@@ -9,25 +9,39 @@
 - name: Download file for bare-metal target with check (sha256)
   get_url:
     url: "https://gitlab.arm.com/api/v4/projects/tooling%2Fgnu-toolchains-for-arm/packages/generic/\
-      gnu-toolchain/15.3.rel2/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-eabi.tar.xz"
-    dest: /tmp/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-eabi.tar.xz
-    checksum: sha256:463df9665c246fa13bab2102115bbf83440661b6eb70b44f3dfd4712ca30037a
+      gnu-toolchain/{{ arm_embedded_version }}/\
+      arm-gnu-toolchain-{{ arm_embedded_version }}-{{ ansible_facts['architecture'] }}-arm-none-eabi.tar.xz"
+    dest: "/tmp/arm-gnu-toolchain-{{ arm_embedded_version }}-{{ ansible_facts['architecture'] }}-arm-none-eabi.tar.xz"
+    checksum: "{{ arm_embedded_checksums[ansible_facts['architecture']]['arm-none-eabi'] }}"
     mode: "0644"
 
 - name: Extract files for bare-metal target
   unarchive:
-    src: /tmp/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-eabi.tar.xz
+    src: "/tmp/arm-gnu-toolchain-{{ arm_embedded_version }}-{{ ansible_facts['architecture'] }}-arm-none-eabi.tar.xz"
     dest: /usr/local
+    remote_src: true
+
+- name: Remove downloaded bare-metal tarball
+  file:
+    path: "/tmp/arm-gnu-toolchain-{{ arm_embedded_version }}-{{ ansible_facts['architecture'] }}-arm-none-eabi.tar.xz"
+    state: absent
 
 - name: Download file for linux-based target (Raspberry Pi)
   get_url:
     url: "https://gitlab.arm.com/api/v4/projects/tooling%2Fgnu-toolchains-for-arm/packages/generic/\
-      gnu-toolchain/15.3.rel2/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-linux-gnueabihf.tar.xz"
-    dest: /tmp/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-linux-gnueabihf.tar.xz
-    checksum: sha256:3f232016d84c06b35ef02d08ef9d94e2ff1f77e04b82d665f95c6baf1b640660
+      gnu-toolchain/{{ arm_embedded_version }}/\
+      arm-gnu-toolchain-{{ arm_embedded_version }}-{{ ansible_facts['architecture'] }}-arm-none-linux-gnueabihf.tar.xz"
+    dest: "/tmp/arm-gnu-toolchain-{{ arm_embedded_version }}-{{ ansible_facts['architecture'] }}-arm-none-linux-gnueabihf.tar.xz"
+    checksum: "{{ arm_embedded_checksums[ansible_facts['architecture']]['arm-none-linux-gnueabihf'] }}"
     mode: "0644"
 
 - name: Extract files for linux-based target
   unarchive:
-    src: /tmp/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-linux-gnueabihf.tar.xz
+    src: "/tmp/arm-gnu-toolchain-{{ arm_embedded_version }}-{{ ansible_facts['architecture'] }}-arm-none-linux-gnueabihf.tar.xz"
     dest: /usr/local
+    remote_src: true
+
+- name: Remove downloaded linux-based tarball
+  file:
+    path: "/tmp/arm-gnu-toolchain-{{ arm_embedded_version }}-{{ ansible_facts['architecture'] }}-arm-none-linux-gnueabihf.tar.xz"
+    state: absent

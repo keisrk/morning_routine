@@ -1,0 +1,11 @@
+---
+# Arm GNU Toolchain version and per-architecture SHA-256 checksums
+arm_embedded_version: "15.3.rel2"
+
+arm_embedded_checksums:
+  x86_64:
+    arm-none-eabi: "sha256:463df9665c246fa13bab2102115bbf83440661b6eb70b44f3dfd4712ca30037a"
+    arm-none-linux-gnueabihf: "sha256:3f232016d84c06b35ef02d08ef9d94e2ff1f77e04b82d665f95c6baf1b640660"
+  aarch64:
+    arm-none-eabi: "sha256:a0dc18893171d39dec82fd8d57eeab3da836fd3df4b61978db3eccbf4a6bb948"
+    arm-none-linux-gnueabihf: "sha256:41e5b0935cc0004994982258ea974f2af2a6b6bd5d90cdf409ef567808d311a4"

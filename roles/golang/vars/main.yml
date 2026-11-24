@@ -1,2 +1,7 @@
-golang_version: 1.27.4
-golang_arch: amd64
+---
+golang_version: "1.27.4"
+golang_arch_map:
+  x86_64: amd64
+  amd64: amd64
+  aarch64: arm64
+  arm64: arm64

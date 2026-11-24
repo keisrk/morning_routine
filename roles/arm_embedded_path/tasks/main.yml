@@ -3,9 +3,9 @@
 - name: Add path to user's path env (bare-metal)
   lineinfile:
     dest: "{{ ansible_facts['env']['HOME'] }}/.profile"
-    line: 'export PATH=$PATH:/usr/local/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-eabi/bin'
+    line: "export PATH=$PATH:/usr/local/arm-gnu-toolchain-15.3.rel2-{{ ansible_facts['architecture'] }}-arm-none-eabi/bin"
 
 - name: Add path to user's path env (linux-based)
   lineinfile:
     dest: "{{ ansible_facts['env']['HOME'] }}/.profile"
-    line: 'export PATH=$PATH:/usr/local/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-linux-gnueabihf/bin'
+    line: "export PATH=$PATH:/usr/local/arm-gnu-toolchain-15.3.rel2-{{ ansible_facts['architecture'] }}-arm-none-linux-gnueabihf/bin"
