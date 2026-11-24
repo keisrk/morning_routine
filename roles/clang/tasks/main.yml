@@ -11,11 +11,13 @@
     suites: "llvm-toolchain-{{ ansible_facts['distribution_release'] | lower }}-20"
     components: main
 
-- name: Install Clang and libc++ development packages
+- name: Install Clang and C/C++ development packages
   apt:
     update_cache: true
     name:
       - clang-20
       - libc++-20-dev
       - libc++abi-20-dev
+      - libcurl4-openssl-dev
+      - pkgconf
     state: present
