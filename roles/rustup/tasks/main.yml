@@ -1,14 +1,14 @@
 ---
 # Install stable Rust.
 
-- name: Fetch rustup script and store it in this.content
+- name: Fetch rustup script and store it in rustup_installer.content
   uri:
     url: https://sh.rustup.rs
     return_content: true
-  register: this
+  register: rustup_installer
 
 - name: Execute rustup script
   command:
     cmd: sh -s -- -y
-    stdin: "{{ this.content }}"
+    stdin: "{{ rustup_installer.content }}"
     creates: "{{ ansible_env.HOME }}/.cargo/bin/rustup"

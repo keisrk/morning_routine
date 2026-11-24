@@ -3,5 +3,7 @@
 
 - name: Download and install glab
   apt:
-    deb: "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/{{ glab_version }}/glab_{{ glab_version }}_linux_{{ glab_arch_map[ansible_architecture] | default('amd64') }}.deb"
+    deb: "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/\
+      {{ glab_cli_version }}/glab_{{ glab_cli_version }}_linux_\
+      {{ glab_cli_arch_map[ansible_architecture] | default('amd64') }}.deb"
     state: present

@@ -12,5 +12,5 @@
 
 - name: Reflect changes to the config file
   command: dpkg-reconfigure -phigh console-setup
-  register: output
-  changed_when: output.rc != 0
+  register: mvctrl_output
+  changed_when: mvctrl_output.rc != 0

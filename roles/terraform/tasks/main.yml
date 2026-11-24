@@ -8,7 +8,7 @@
     types: deb
     uris: "https://apt.releases.hashicorp.com"
     signed_by: "https://apt.releases.hashicorp.com/gpg"
-    suites: "{{ ansible_distribution_release|lower }}"
+    suites: "{{ ansible_distribution_release | lower }}"
     components: main
 
 - name: Update and install Terraform

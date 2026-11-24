@@ -5,15 +5,15 @@
   tempfile:
     state: directory
     suffix: aws_cli
-  register: aws_cli
+  register: aws_cli_tempdir
 
 - name: Download AWS CLI binary distribution and extract excutable
   unarchive:
     src: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}.zip
-    dest: "{{ aws_cli.path }}"
+    dest: "{{ aws_cli_tempdir.path }}"
     remote_src: true
 
 - name: Run the install script
-  command: "{{ aws_cli.path }}/aws/install --update"
-  register: output
-  changed_when: output.rc != 0
+  command: "{{ aws_cli_tempdir.path }}/aws/install --update"
+  register: aws_cli_install_output
+  changed_when: aws_cli_install_output.rc != 0

@@ -7,9 +7,9 @@
   deb822_repository:
     name: packages-microsoft-com-prod
     types: deb
-    uris: "https://packages.microsoft.com/{{ ansible_distribution|lower }}/{{ ansible_distribution_major_version }}/prod"
+    uris: "https://packages.microsoft.com/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/prod"
     signed_by: "https://packages.microsoft.com/keys/microsoft.asc"
-    suites: "{{ ansible_distribution_release|lower }}"
+    suites: "{{ ansible_distribution_release | lower }}"
     components: main
 
 - name: Add Microsoft prod APT repository (Ubuntu)
@@ -17,9 +17,9 @@
   deb822_repository:
     name: packages-microsoft-com-prod
     types: deb
-    uris: "https://packages.microsoft.com/{{ ansible_distribution|lower }}/{{ ansible_distribution_version }}/prod"
+    uris: "https://packages.microsoft.com/{{ ansible_distribution | lower }}/{{ ansible_distribution_version }}/prod"
     signed_by: "https://packages.microsoft.com/keys/microsoft.asc"
-    suites: "{{ ansible_distribution_release|lower }}"
+    suites: "{{ ansible_distribution_release | lower }}"
     components: main
 
 - name: Ensure .NET SDK is up to date
