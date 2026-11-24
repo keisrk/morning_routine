@@ -1,6 +1,6 @@
 ---
 # GitLab CLI version and architecture mappings
-glab_cli_version: "1.128.0"
+glab_cli_version: "1.132.0"
 
 glab_cli_arch_map:
   x86_64: amd64

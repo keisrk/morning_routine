@@ -6,27 +6,28 @@
   apt:
     name: openocd, screen, clang-format
 
-- name: Download file for bare-metal target with check (md5)
+- name: Download file for bare-metal target with check (sha256)
   get_url:
-    url: "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/\
-         gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2"
-    dest: /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
-    checksum: md5:2b9eeccc33470f9d3cda26983b9d2dc6
+    url: "https://gitlab.arm.com/api/v4/projects/tooling%2Fgnu-toolchains-for-arm/packages/generic/\
+      gnu-toolchain/15.3.rel2/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-eabi.tar.xz"
+    dest: /tmp/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-eabi.tar.xz
+    checksum: sha256:463df9665c246fa13bab2102115bbf83440661b6eb70b44f3dfd4712ca30037a
     mode: "0644"
 
 - name: Extract files for bare-metal target
   unarchive:
-    src: /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+    src: /tmp/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-eabi.tar.xz
     dest: /usr/local
 
 - name: Download file for linux-based target (Raspberry Pi)
   get_url:
-    url: "https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/binrel/\
-         gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf.tar.xz"
-    dest: /tmp/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf.tar.xz
+    url: "https://gitlab.arm.com/api/v4/projects/tooling%2Fgnu-toolchains-for-arm/packages/generic/\
+      gnu-toolchain/15.3.rel2/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-linux-gnueabihf.tar.xz"
+    dest: /tmp/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-linux-gnueabihf.tar.xz
+    checksum: sha256:3f232016d84c06b35ef02d08ef9d94e2ff1f77e04b82d665f95c6baf1b640660
     mode: "0644"
 
 - name: Extract files for linux-based target
   unarchive:
-    src: /tmp/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf.tar.xz
+    src: /tmp/arm-gnu-toolchain-15.3.rel2-x86_64-arm-none-linux-gnueabihf.tar.xz
     dest: /usr/local

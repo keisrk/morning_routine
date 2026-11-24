@@ -7,8 +7,8 @@
     sdkman_auto_answer: true
     sdkman_install_packages:
       - { candidate: java, version: 25-tem }
-      - { candidate: gradle, version: 9.8.2 }
-      - { candidate: maven, version: 3.8.5 }
+      - { candidate: gradle, version: 9.9.2 }
+      - { candidate: maven, version: 3.10.2 }
 
 - name: Install OpenAPI Generator
   block:
