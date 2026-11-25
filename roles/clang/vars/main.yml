@@ -1,9 +1,0 @@
----
-# CBMC version and architecture filename suffixes
-clang_cbmc_version: "6.11.0"
-
-clang_cbmc_arch_map:
-  x86_64: ""
-  amd64: ""
-  aarch64: "-arm64"
-  arm64: "-arm64"

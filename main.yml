@@ -30,3 +30,4 @@
     - arm_embedded_path
     - qemu_arm
     - python3
+    - esbmc

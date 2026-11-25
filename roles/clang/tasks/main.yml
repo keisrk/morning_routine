@@ -22,10 +22,3 @@
       - libsqlite3-dev
       - pkgconf
     state: present
-
-- name: Download and install CBMC
-  apt:
-    deb: "https://github.com/diffblue/cbmc/releases/download/cbmc-{{ clang_cbmc_version }}/\
-      ubuntu-24.04{{ clang_cbmc_arch_map[ansible_facts['architecture']] | default('') }}-\
-      cbmc-{{ clang_cbmc_version }}-Linux.deb"
-    state: present

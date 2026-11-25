@@ -1,0 +1,9 @@
+---
+# ESBMC version and architecture archive names
+esbmc_version: "8.8"
+
+esbmc_arch_map:
+  x86_64: esbmc-linux.zip
+  amd64: esbmc-linux.zip
+  aarch64: esbmc-linux-armv8.zip
+  arm64: esbmc-linux-armv8.zip

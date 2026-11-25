@@ -1,0 +1,33 @@
+---
+# Install ESBMC model checker into ~/.local/bin (unprivileged).
+
+- name: Ensure ~/.local/bin exists
+  file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.local/bin"
+    state: directory
+    mode: "0755"
+
+- name: Create temp dir for ESBMC archive
+  tempfile:
+    state: directory
+    suffix: esbmc
+  register: esbmc_tempdir
+
+- name: Download and extract ESBMC release archive
+  unarchive:
+    src: "https://github.com/esbmc/esbmc/releases/download/v{{ esbmc_version }}/\
+      {{ esbmc_arch_map[ansible_facts['architecture']] | default('esbmc-linux.zip') }}"
+    dest: "{{ esbmc_tempdir.path }}"
+    remote_src: true
+
+- name: Install esbmc binary to ~/.local/bin
+  copy:
+    src: "{{ esbmc_tempdir.path }}/release/bin/esbmc"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.local/bin/esbmc"
+    remote_src: true
+    mode: "0755"
+
+- name: Clean up temp dir
+  file:
+    path: "{{ esbmc_tempdir.path }}"
+    state: absent
