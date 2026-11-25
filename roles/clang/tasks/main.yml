@@ -19,5 +19,6 @@
       - libc++-20-dev
       - libc++abi-20-dev
       - libcurl4-openssl-dev
+      - libsqlite3-dev
       - pkgconf
     state: present
